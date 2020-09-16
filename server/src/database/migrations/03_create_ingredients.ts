@@ -5,7 +5,6 @@ export async function up(knex: Knex) {
     table.increments('id').primary();
     table.string('name').notNullable();
     table.string('measure').notNullable();
-    table.string('description').notNullable();
   });
 }
 
