@@ -34,4 +34,16 @@ routes.post('/users', async (request, response) => {
   return response.json({ success: 'Usuário registado' });
 });
 
+routes.post('/recipe', async (request, response) => {
+  const { email, password, name } = request.body;
+
+  await knex('users').insert({
+    name,
+    email,
+    password,
+  });
+
+  return response.json({ success: 'Usuário registado' });
+});
+
 export default routes;
