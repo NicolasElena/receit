@@ -34,17 +34,35 @@ routes.post('/users', async (request, response) => {
 });
 
 routes.post('/recipes', async (request, response) => {
-  const { recipe, owner, name } = request.body;
+  const { recipe, owner, name, ingredients } = request.body;
 
-  await knex('recipes')
+  const trx = await knex.transaction();
+
+  await trx('recipes')
     .insert({
       name,
       recipe,
       owner,
     })
     .returning('id')
-    .then((id) => {
+    .then(async (id) => {
       console.log(id);
+      const recipeIngredients = ingredients.map(
+        (recipeIngredient: {
+          ingredient: number;
+          measure: number;
+          amount: number;
+        }) => {
+          return {
+            recipe_id: Number(id),
+            ingredient_id: recipeIngredient.ingredient,
+            measure_id: recipeIngredient.measure,
+            amount: recipeIngredient.amount,
+          };
+        }
+      );
+
+      await trx('recipe_ingredients').insert(recipeIngredients);
     });
 
   return response.json({ success: 'Usuário registado' });
