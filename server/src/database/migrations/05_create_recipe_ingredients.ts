@@ -18,7 +18,7 @@ export async function up(knex: Knex) {
       .integer('measure_id')
       .notNullable()
       .references('id')
-      .inTable('measure');
+      .inTable('measures');
   });
 }
 
