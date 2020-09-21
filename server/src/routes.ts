@@ -1,7 +1,11 @@
 import express, { response } from 'express';
 import knex from './database/connection';
+import UsersController from './controllers/UsersControllers';
+import RecipeController from './controllers/RecipesController';
 
 const routes = express.Router();
+const usersController = new UsersController();
+const recipeController = new RecipeController();
 
 routes.get('/', (request, response) => {
   return response.json({ message: 'oi' });
@@ -10,103 +14,64 @@ routes.get('/', (request, response) => {
 routes.get('/recipes', async (request, response) => {
   const recipes = await knex('recipes').select('*');
 
-  const serializedItems = recipes.map((recipe) => {
+  const serializedRecipes = recipes.map((recipe) => {
     return {
+      id: recipe.id,
       name: recipe.name,
-      ingredients: recipe.ingredients,
+      recipe: recipe.recipe,
       owner: recipe.owner,
     };
   });
-
-  return response.json(recipes);
+  return response.json(serializedRecipes);
 });
 
-routes.post('/users', async (request, response) => {
-  const { email, password, name } = request.body;
+// routes.get('/recipess', async (request, response) => {
+//   const trx = await knex.transaction();
 
-  await knex('users').insert({
-    name,
-    email,
-    password,
-  });
+//   const serialiedRecipes = await trx('recipes')
+//     .select('*')
+//     .then((recipe) => {
+//       console.log(recipe);
+//       //montar o .map aqui das recipes, pegar os IDs e buscar as outras infos
 
-  return response.json({ success: 'Usuário registado' });
-});
+//       //
 
-routes.post('/recipes', async (request, response) => {
-  const { recipe, owner, name, ingredients } = request.body;
+//       return {
+//         //retornar aqui a estrutura do json?
+//       };
+//     });
 
-  const trx = await knex.transaction();
+//   // console.log(recipes);
 
-  await trx('recipes')
-    .insert({
-      name,
-      recipe,
-      owner,
-    })
-    .returning('id')
-    .then(async (id) => {
-      console.log(id);
-      const recipeIngredients = ingredients.map(
-        (recipeIngredient: {
-          ingredient: number;
-          measure: number;
-          amount: number;
-        }) => {
-          return {
-            recipe_id: Number(id),
-            ingredient_id: recipeIngredient.ingredient,
-            measure_id: recipeIngredient.measure,
-            amount: recipeIngredient.amount,
-          };
-        }
-      );
+//   // const completedRecipes = recipes.map(async (recipe) => {
+//   //   // para cada recipe buscada, procurar na tabela pivot os ingredients com measure e amount ???
+//   //   const ingredients = await trx('recipe_ingredients')
+//   //     .select(
+//   //       'ingredients.ingredient',
+//   //       'recipe_ingredients.amount',
+//   //       'measures.measure'
+//   //     )
+//   //     .innerJoin(
+//   //       'ingredients',
+//   //       'recipe_ingredients.ingredient_id',
+//   //       'ingredients.id'
+//   //     )
+//   //     .innerJoin('measures', 'recipe_ingredients.measure_id', 'measures.id')
+//   //     .where('recipe_id', recipe.id);
 
-      await trx('recipe_ingredients').insert(recipeIngredients);
-    });
+//   //   return {
+//   //     recipe_id: recipe.id,
+//   //     name: recipe.name,
+//   //     recipe,
+//   //   };
+//   // });
+//
+//   return response.json(serialiedRecipes);
+// });
 
-  return response.json({ success: 'Usuário registado' });
-});
+routes.post('/users', usersController.create);
 
-routes.post('/recipeee', async (request, response) => {
-  const { recipe, owner, name, ingredients } = request.body;
-  // OWNER = useState armazenando o usuário logado
-  //rota para cadastrar tudão
-
-  const trx = await knex.transaction();
-
-  const idRecipe = await trx('recipes').insert({
-    name,
-    recipe,
-    owner,
-  });
-
-  const recipe_id = idRecipe[0];
-
-  console.log(recipe_id);
-
-  //inserção da tabela que relaciona tudo
-  const recipeIngredients = ingredients.map(
-    (recipeIngredient: {
-      ingredient: number;
-      measure: number;
-      amount: number;
-    }) => {
-      return {
-        recipe_id,
-        ingredient_id: recipeIngredient.ingredient,
-        measure_id: recipeIngredient.measure,
-        amount: recipeIngredient.amount,
-      };
-    }
-  );
-
-  await trx('recipe_ingredients').insert(recipeIngredients);
-
-  console.log(recipeIngredients);
-
-  return response.json({ success: 'Usuário registado' });
-});
+routes.post('/recipes', recipeController.create);
 
 routes.post('/ingredients', async (request, response) => {
   const { ingredient } = request.body;
