@@ -11,63 +11,71 @@ routes.get('/', (request, response) => {
   return response.json({ message: 'oi' });
 });
 
-routes.get('/recipes', async (request, response) => {
-  const recipes = await knex('recipes').select('*');
+routes.get('/recipes/:id', recipeController.show);
 
-  const serializedRecipes = recipes.map((recipe) => {
-    return {
-      id: recipe.id,
-      name: recipe.name,
-      recipe: recipe.recipe,
-      owner: recipe.owner,
-    };
-  });
-  return response.json(serializedRecipes);
+routes.get('/recipex', async (request, response) => {
+  return response.json();
 });
 
-// routes.get('/recipess', async (request, response) => {
-//   const trx = await knex.transaction();
+routes.get('/recipes', recipeController.index);
 
-//   const serialiedRecipes = await trx('recipes')
-//     .select('*')
-//     .then((recipe) => {
-//       console.log(recipe);
-//       //montar o .map aqui das recipes, pegar os IDs e buscar as outras infos
+routes.get('/recipess', async (request, response) => {
+  const trx = await knex.transaction();
 
-//       //
+  const serializedRecipes = await knex
+    .select('*')
+    .from('recipes')
+    .then(async (recipe) => {
+      console.log(recipe);
+      const id = recipe.map;
 
-//       return {
-//         //retornar aqui a estrutura do json?
-//       };
-//     });
+      const ingredients = await knex('recipe_ingredients')
+        .select(
+          'ingredients.ingredient',
+          'recipe_ingredients.amount',
+          'measures.measure'
+        )
+        .innerJoin(
+          'ingredients',
+          'recipe_ingredients.ingredient_id',
+          'ingredients.id'
+        )
+        .innerJoin('measures', 'recipe_ingredients.measure_id', 'measures.id')
+        .where('recipe_id', recipe);
 
-//   // console.log(recipes);
+      return {
+        //retornar aqui a estrutura do json?
+      };
+    });
+  console.log(serializedRecipes);
 
-//   // const completedRecipes = recipes.map(async (recipe) => {
-//   //   // para cada recipe buscada, procurar na tabela pivot os ingredients com measure e amount ???
-//   //   const ingredients = await trx('recipe_ingredients')
-//   //     .select(
-//   //       'ingredients.ingredient',
-//   //       'recipe_ingredients.amount',
-//   //       'measures.measure'
-//   //     )
-//   //     .innerJoin(
-//   //       'ingredients',
-//   //       'recipe_ingredients.ingredient_id',
-//   //       'ingredients.id'
-//   //     )
-//   //     .innerJoin('measures', 'recipe_ingredients.measure_id', 'measures.id')
-//   //     .where('recipe_id', recipe.id);
+  // console.log(recipes);
 
-//   //   return {
-//   //     recipe_id: recipe.id,
-//   //     name: recipe.name,
-//   //     recipe,
-//   //   };
-//   // });
-//
-//   return response.json(serialiedRecipes);
-// });
+  // const completedRecipes = recipes.map(async (recipe) => {
+  //   // para cada recipe buscada, procurar na tabela pivot os ingredients com measure e amount ???
+  //   const ingredients = await trx('recipe_ingredients')
+  //     .select(
+  //       'ingredients.ingredient',
+  //       'recipe_ingredients.amount',
+  //       'measures.measure'
+  //     )
+  //     .innerJoin(
+  //       'ingredients',
+  //       'recipe_ingredients.ingredient_id',
+  //       'ingredients.id'
+  //     )
+  //     .innerJoin('measures', 'recipe_ingredients.measure_id', 'measures.id')
+  //     .where('recipe_id', recipe.id);
+
+  //   return {
+  //     recipe_id: recipe.id,
+  //     name: recipe.name,
+  //     recipe,
+  //   };
+  // });
+
+  return response.json(serializedRecipes);
+});
 
 routes.post('/users', usersController.create);
 
