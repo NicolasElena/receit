@@ -45,6 +45,26 @@ class RecipesController {
   async show(request: Request, response: Response) {
     const { id } = request.params;
 
+    interface Recipes {
+      id: number;
+      owner: number;
+      name: string;
+      recipe: string;
+      ingredients: [
+        {
+          ingredient: string;
+          amount: number;
+          measure: string;
+        }
+      ];
+    }
+
+    interface Ingredient {
+      ingredient: string;
+      amount: number;
+      measure: string;
+    }
+
     const recipe = await knex('recipes').select('*').where('id', id);
 
     if (!recipe) {
@@ -70,21 +90,59 @@ class RecipesController {
   }
 
   async index(request: Request, response: Response) {
-    const trx = await knex.transaction();
-
-    interface Recipes {
+    interface Recipe {
       id: number;
+      owner: number;
       name: string;
       recipe: string;
-      owner: number;
+      ingredients: Array<Ingredient>;
     }
 
-    const recipes = await knex.select('*').from<Recipes>('recipes');
+    interface Ingredient {
+      ingredient: string;
+      amount: number;
+      measure: string;
+    }
 
-    const recipeIngredient = recipes.map((recipe) => {
-      console.log(recipe.id);
-    });
-    return response.json({ recipes });
+    const serializedRecipes: Array<Recipe> = [];
+
+    const trx = await knex.transaction();
+
+    await trx
+      .select<[Recipe]>('*')
+      .from('recipes')
+      .then(async (recipes) => {
+        recipes.map(async (recipe: Recipe) => {
+          let ingredients: Array<Ingredient> = [];
+          ingredients = await trx<Ingredient>('recipe_ingredients')
+            .select(
+              'ingredients.ingredient',
+              'recipe_ingredients.amount',
+              'measures.measure'
+            )
+            .innerJoin(
+              'ingredients',
+              'recipe_ingredients.ingredient_id',
+              'ingredients.id'
+            )
+            .innerJoin(
+              'measures',
+              'recipe_ingredients.measure_id',
+              'measures.id'
+            )
+            .where('recipe_id', recipe.id);
+          recipe.ingredients = [];
+          ingredients.map((ingredient: Ingredient) => {
+            recipe.ingredients.push(ingredient);
+          });
+          //console.log(recipe);
+          serializedRecipes.push(recipe);
+          console.log(serializedRecipes);
+        });
+      })
+      .catch(() => {
+        return response.json({ error: 'error' });
+      });
   }
 }
 

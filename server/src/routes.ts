@@ -13,10 +13,6 @@ routes.get('/', (request, response) => {
 
 routes.get('/recipes/:id', recipeController.show);
 
-routes.get('/recipex', async (request, response) => {
-  return response.json();
-});
-
 routes.get('/recipes', recipeController.index);
 
 routes.get('/recipess', async (request, response) => {
@@ -47,32 +43,6 @@ routes.get('/recipess', async (request, response) => {
         //retornar aqui a estrutura do json?
       };
     });
-  console.log(serializedRecipes);
-
-  // console.log(recipes);
-
-  // const completedRecipes = recipes.map(async (recipe) => {
-  //   // para cada recipe buscada, procurar na tabela pivot os ingredients com measure e amount ???
-  //   const ingredients = await trx('recipe_ingredients')
-  //     .select(
-  //       'ingredients.ingredient',
-  //       'recipe_ingredients.amount',
-  //       'measures.measure'
-  //     )
-  //     .innerJoin(
-  //       'ingredients',
-  //       'recipe_ingredients.ingredient_id',
-  //       'ingredients.id'
-  //     )
-  //     .innerJoin('measures', 'recipe_ingredients.measure_id', 'measures.id')
-  //     .where('recipe_id', recipe.id);
-
-  //   return {
-  //     recipe_id: recipe.id,
-  //     name: recipe.name,
-  //     recipe,
-  //   };
-  // });
 
   return response.json(serializedRecipes);
 });
