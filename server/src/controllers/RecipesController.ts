@@ -104,44 +104,85 @@ class RecipesController {
       measure: string;
     }
 
-    const serializedRecipes: Array<Recipe> = [];
+    interface TempRecipeIngredient {
+      id: number;
+      owner: number;
+      name: string;
+      recipe: string;
+      ingredient: string;
+      amount: number;
+      measure: string;
+    }
 
     const trx = await knex.transaction();
 
-    await trx
-      .select<[Recipe]>('*')
+    await knex
+      .select<[TempRecipeIngredient]>([
+        'recipes.id',
+        'recipes.name',
+        'recipes.recipe',
+        'ingredients.ingredient',
+        'recipe_ingredients.amount',
+        'measures.measure',
+      ])
       .from('recipes')
-      .then(async (recipes) => {
-        recipes.map(async (recipe: Recipe) => {
-          let ingredients: Array<Ingredient> = [];
-          ingredients = await trx<Ingredient>('recipe_ingredients')
-            .select(
-              'ingredients.ingredient',
-              'recipe_ingredients.amount',
-              'measures.measure'
-            )
-            .innerJoin(
-              'ingredients',
-              'recipe_ingredients.ingredient_id',
-              'ingredients.id'
-            )
-            .innerJoin(
-              'measures',
-              'recipe_ingredients.measure_id',
-              'measures.id'
-            )
-            .where('recipe_id', recipe.id);
-          recipe.ingredients = [];
-          ingredients.map((ingredient: Ingredient) => {
-            recipe.ingredients.push(ingredient);
+      .innerJoin(
+        'recipe_ingredients',
+        'recipes.id',
+        'recipe_ingredients.recipe_id'
+      )
+      .innerJoin(
+        'ingredients',
+        'recipe_ingredients.ingredient_id',
+        'ingredients.id'
+      )
+      .innerJoin('measures', 'recipe_ingredients.measure_id', 'measures.id')
+      .then((data) => {
+        //console.log(data);
+
+        let serializedRecipe: Array<Recipe> = [];
+        // let uniqueRecipes: Array<Recipe> = [];
+
+        function returnObjectIngredient(column: number): Array<Ingredient> {
+          const filteredObjectIngredients: Array<Ingredient> = [];
+
+          data.map((recipe: TempRecipeIngredient) => {
+            if (recipe.id == column)
+              filteredObjectIngredients.push({
+                ingredient: recipe.ingredient,
+                amount: recipe.amount,
+                measure: recipe.measure,
+              });
           });
+          return filteredObjectIngredients;
+        }
+
+        // map para inserir os diversos ingredientes como objeto dentro de outro
+
+        data.map((recipe) => {
           //console.log(recipe);
-          serializedRecipes.push(recipe);
-          console.log(serializedRecipes);
+          // console.log(returnObjectIngredient(recipe.id));
+          serializedRecipe.push({
+            id: recipe.id,
+            owner: recipe.owner,
+            name: recipe.name,
+            recipe: recipe.recipe,
+            ingredients: returnObjectIngredient(recipe.id),
+          });
         });
-      })
-      .catch(() => {
-        return response.json({ error: 'error' });
+
+        // remover duplicidades
+
+        const uniqueRecipes = Array.from(
+          new Set(serializedRecipe.map((a) => a.id))
+        ).map((id) => {
+          return serializedRecipe.find((a) => a.id === id);
+        });
+
+        //retorno para a api com os objetos estruturados
+
+        console.log(uniqueRecipes);
+        return response.json(uniqueRecipes);
       });
   }
 }
