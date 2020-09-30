@@ -3,6 +3,7 @@
 
   --color-primary: #F13030;
   --color-background-web: #F36C6C;
+  --color-txt-secondary: #CF8989;
   --color-text-base: #512727 ;
   --color-button-primary: #00AF54;
   --color-button-secondary: #009246;
@@ -24,6 +25,8 @@ html, body, #root{
 
 body{
   background:var(--color-background-web);
+  background-image: url(../Images/Desktop_bg.svg);
+  background-size: cover;
   }
 
 
@@ -67,8 +70,8 @@ main{
 .logo-container img{
   width: 36px;
   height: 72px;
-  left: 189px;
-  top: 231px;
+  left: 10px;
+  top: 10px;
 }
 
 .loginTxt h1{
@@ -96,6 +99,17 @@ main{
   border-radius: 3.3rem;
   font: 1.9rem Archivo;
   outline: 0;
+}
+
+.input-block ::placeholder{
+  font-family: Archivo;
+  font-size: 17px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: -0.009999999776482582px;
+  text-align: left;
+  color: var(--color-txt-secondary  );
 }
 
 .submit-button{
