@@ -51,14 +51,6 @@ routes.post('/users', usersController.create);
 
 routes.post('/recipes', recipeController.create);
 
-routes.post('/ingredients', async (request, response) => {
-  const { ingredient } = request.body;
-
-  await knex('ingredients').insert({
-    ingredient,
-  });
-
-  return response.json({ success: 'Usuário registado' });
-});
+routes.get('/ingredient', recipeController.listIng);
 
 export default routes;
