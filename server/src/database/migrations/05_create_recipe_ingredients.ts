@@ -13,6 +13,12 @@ export async function up(knex: Knex) {
       .notNullable()
       .references('id')
       .inTable('ingredients');
+    table.integer('amount').notNullable();
+    table
+      .integer('measure_id')
+      .notNullable()
+      .references('id')
+      .inTable('measures');
   });
 }
 

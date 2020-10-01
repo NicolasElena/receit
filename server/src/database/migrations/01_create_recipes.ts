@@ -4,9 +4,8 @@ export async function up(knex: Knex) {
   return knex.schema.createTable('recipes', (table) => {
     table.increments('id').primary();
     table.string('name').notNullable();
-    table.string('ingredients').notNullable();
-    table.string('preparemethod').notNullable();
-    table.string('owner').notNullable();
+    table.string('recipe').notNullable();
+    table.integer('owner').notNullable().references('id').inTable('users');
   });
 }
 
