@@ -1,12 +1,3 @@
-import knex from 'knex';
+import { createConnection } from 'typeorm';
 
-const connection = knex({
-  client: 'pg',
-  connection: {
-    database: 'receit_bd',
-    user: 'postgres',
-    password: 'N!cobd',
-  },
-});
-
-export default connection;
+createConnection();
