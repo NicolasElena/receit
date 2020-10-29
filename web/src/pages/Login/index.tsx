@@ -1,10 +1,33 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
+import './styles.css'
+
+import logoImg from '../../assets/Images/logo-min.png'
 
 function Login() {
   return (
-    <div id="page-login">
-      
-    </div>
+    <main className="page-login">
+      <div id="login-container">
+        <div className="logo-container">
+          <img src={logoImg} alt="Receit"/>
+        </div>
+        <div className="loginTxt">
+          <h1>Login</h1>
+        </div>
+
+        <div className="input-block" >
+          <input type="text" placeholder="E-mail" id="login" />
+          <input type="password" placeholder="Password" id="password" />
+        </div>
+
+        <div className="submit-container">
+          <Link to="/" className="submit-button"> 
+            Entrar
+          </Link>
+        </div>
+      </div>
+    </main>
   )
 }
 

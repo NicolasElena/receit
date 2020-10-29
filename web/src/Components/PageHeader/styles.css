@@ -1,0 +1,20 @@
+.page-header{
+  background: var(--color-box-base);
+  border-bottom-right-radius: 0.8rem;
+  border-bottom-left-radius: 0.8rem;
+}
+
+.logo{
+  width: 100px;
+  height: 104px;
+  padding-top: 1.5rem;
+  text-align: center;
+  border-radius: 5rem;
+}
+
+.logo img{
+  width: 36px;
+  height: 72px;
+  left: 10px;
+  top: 10px;
+}
