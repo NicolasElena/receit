@@ -10,7 +10,9 @@ function Login() {
     <main className="page-login">
       <div id="login-container">
         <div className="logo-container">
+          <Link to="/">
           <img src={logoImg} alt="Receit"/>
+          </Link>
         </div>
         <div className="loginTxt">
           <h1>Login</h1>

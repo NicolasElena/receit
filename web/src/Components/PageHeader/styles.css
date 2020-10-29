@@ -1,20 +1,56 @@
 .page-header{
+  padding: 0.5rem;
   background: var(--color-box-base);
   border-bottom-right-radius: 0.8rem;
   border-bottom-left-radius: 0.8rem;
 }
 
-.logo{
-  width: 100px;
-  height: 104px;
+.nav{
+  display: flex;
+  justify-content: space-between;
   padding-top: 1.5rem;
-  text-align: center;
+  padding-left: 3rem;
   border-radius: 5rem;
 }
 
-.logo img{
+.nav img{
   width: 36px;
   height: 72px;
   left: 10px;
   top: 10px;
+}
+
+.nav a{
+  padding-right: 2rem;
+  color: var(--color-text-base);
+  font-size: 2.3rem;
+  font: 400 1.6 Archivo;
+  text-decoration: none;
+}
+
+.nav input{
+  width: 70rem;
+  height: 5rem;
+  padding: 1.25rem 1.25rem;
+  outline: 0;
+  border-style: solid;
+  border-radius: 3rem;
+}
+
+.nav button{
+  width: 15rem;
+  height: 4.5rem;
+  color: var(--color-button-text);
+  background-color: var(--color-primary);
+  border: 0;
+  cursor: pointer;
+  border-radius: 5rem;
+  transition: background-color 0.2s;
+  outline: 0;
+
+  display: flex;
+	align-items: center;
+  justify-content: center;
+  
+  text-decoration: none;
 }

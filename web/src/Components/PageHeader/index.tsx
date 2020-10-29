@@ -8,12 +8,35 @@ import logoImg from '../../assets/Images/logo-min.png'
 function PageHeader() {
   return (
     <header className="page-header">
-      <header className="logo">
-        <Link to="/">
+      <div className="nav">
+        
+        <Link className="back" to="/">
         <img src={logoImg} alt="Recit"/>
         </Link>
-    
-      </header>
+
+        <Link to="/receitas">
+            Receitas
+         </Link>
+
+         <Link to="/categorias">
+             Categorias
+         </Link>
+
+        <input 
+          type="text" 
+          placeholder="Procure aqui sua receita"
+        />
+
+         <Link to="/sign">
+          <button>
+            Registrar
+          </button>
+         </Link>
+
+         <Link to="/login">
+             Login
+         </Link>
+      </div>
     </header>
   )
 }
