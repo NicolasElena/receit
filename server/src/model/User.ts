@@ -3,6 +3,7 @@ import {
   PrimaryGeneratedColumn,
   Column,
   OneToMany,
+  OneToOne,
   JoinColumn,
 } from 'typeorm';
 import { Recipe } from './Recipe';
@@ -25,15 +26,15 @@ export class User {
   @Column()
   password: string;
 
+  @OneToOne(() => UserImage, (image) => image.user, {
+    cascade: ['insert', 'update'],
+  })
+  @JoinColumn()
+  image: UserImage;
+
   @OneToMany(() => Recipe, (recipe) => recipe.user, {
     cascade: ['insert', 'update'],
   })
   @JoinColumn()
   recipes: Recipe[];
-
-  @OneToMany(() => UserImage, (image) => image.user, {
-    cascade: ['insert', 'update'],
-  })
-  @JoinColumn({ name: 'user_id' })
-  image: UserImage;
 }
