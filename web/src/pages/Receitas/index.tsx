@@ -6,7 +6,11 @@ function Receitas() {
   return (
     <div id="page-content" className="container">
       <PageHeader/>
-    </div>
+
+      <main>
+        alo
+      </main>
+    </div>  
   )
 }
 

@@ -9,33 +9,38 @@ function PageHeader() {
   return (
     <header className="page-header">
       <div className="nav">
-        
-        <Link className="back" to="/">
-        <img src={logoImg} alt="Recit"/>
-        </Link>
+        <div className="logo">
+          <Link className="back" to="/">
+          <img src={logoImg} alt="Recit"/>
+          </Link>
+        </div>
 
-        <Link to="/receitas">
+        <div className="coisas">
+          <Link to="/receitas">
             Receitas
-         </Link>
+          </Link>
 
-         <Link to="/categorias">
-             Categorias
-         </Link>
+           <Link to="/categorias">
+               Categorias
+           </Link>
+        </div>
 
         <input 
           type="text" 
           placeholder="Procure aqui sua receita"
         />
 
-         <Link to="/sign">
-          <button>
-            Registrar
-          </button>
-         </Link>
-
-         <Link to="/login">
-             Login
-         </Link>
+        <div className="login">
+          <Link to="/sign">
+           <button>
+             Registrar
+           </button>
+          </Link>
+    
+          <Link to="/login">
+              Login
+          </Link>
+        </div>
       </div>
     </header>
   )
