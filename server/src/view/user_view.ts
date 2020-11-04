@@ -1,5 +1,6 @@
 import { User } from '../model/User';
 import recipes from './recipe_view';
+import userImage from './user_image_view';
 
 export default {
   render(user: User) {
@@ -8,6 +9,7 @@ export default {
       lastName: user.lastName,
       email: user.email,
       recipes: recipes.renderMany(user.recipes),
+      image: userImage.render(user.image),
     };
   },
   renderMany(user: User[]) {

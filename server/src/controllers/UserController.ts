@@ -48,4 +48,23 @@ export default {
     console.log(user);
     return response.status(201).json(user);
   },
+  async index(request: Request, response: Response) {
+    const usersRepository = getRepository(User);
+
+    const users = await usersRepository.find({
+      relations: ['recipes', 'image'],
+    });
+
+    return response.json(userView.renderMany(users));
+  },
+  async show(request: Request, response: Response) {
+    const { id } = request.params;
+    const usersRepository = getRepository(User);
+
+    const user = await usersRepository.findOneOrFail(id, {
+      relations: ['recipes', 'image'],
+    });
+
+    return response.json(userView.render(user));
+  },
 };
