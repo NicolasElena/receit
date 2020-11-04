@@ -1,11 +1,12 @@
 import { Recipe } from '../model/Recipe';
 import categories from './category_view';
 import recipeIngredient from './recipeingredient_view';
+import user from './user_view';
 
 export default {
   render(recipe: Recipe) {
     return {
-      user: recipe.user,
+      user: user.render(recipe.user),
       name: recipe.name,
       prepare_method: recipe.prepare_method,
       public_flag: recipe.public_flag,
