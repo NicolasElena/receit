@@ -10,22 +10,19 @@ export class RecipeIngredient {
 
   @Column()
   public RecipeId!: number;
-
-  @Column()
-  public IngredientId!: number;
-
-  @Column()
-  public MeasureId!: number;
-
-  @Column()
-  public amount!: number;
-
   @ManyToOne(() => Recipe, (recipe) => recipe.recipeIngredient)
   public recipe!: Recipe;
 
+  @Column()
+  public IngredientId!: number;
   @ManyToOne(() => Ingredient, (ingredient) => ingredient.recipeIngredient)
   public ingredient!: Ingredient;
 
+  @Column()
+  public MeasureId!: number;
   @ManyToOne(() => Measure, (measure) => measure.recipeIngredient)
   public measure!: Measure;
+
+  @Column()
+  public amount!: number;
 }

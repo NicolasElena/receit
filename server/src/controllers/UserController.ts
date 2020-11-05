@@ -27,7 +27,6 @@ export default {
     };
 
     console.log(data);
-
     const schema = Yup.object().shape({
       firstName: Yup.string().required(),
       lastName: Yup.string().required(),
