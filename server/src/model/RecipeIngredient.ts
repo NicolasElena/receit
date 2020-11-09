@@ -5,24 +5,31 @@ import { Measure } from './Measure';
 
 @Entity()
 export class RecipeIngredient {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('increment')
   public RecipeIngredientId!: number;
 
   @Column()
-  public RecipeId!: number;
+  public amount!: number;
+
+  @Column()
+  public recipeId!: number;
+
+  @Column()
+  public ingredientId!: number;
+
+  @Column()
+  public measureId!: number;
+
   @ManyToOne(() => Recipe, (recipe) => recipe.recipeIngredient)
   public recipe!: Recipe;
 
-  @Column()
-  public IngredientId!: number;
-  @ManyToOne(() => Ingredient, (ingredient) => ingredient.recipeIngredient)
+  @ManyToOne(() => Ingredient, (ingredient) => ingredient.recipeIngredient, {
+    cascade: ['insert'],
+  })
   public ingredient!: Ingredient;
 
-  @Column()
-  public MeasureId!: number;
-  @ManyToOne(() => Measure, (measure) => measure.recipeIngredient)
+  @ManyToOne(() => Measure, (measure) => measure.recipeIngredient, {
+    cascade: ['insert'],
+  })
   public measure!: Measure;
-
-  @Column()
-  public amount!: number;
 }

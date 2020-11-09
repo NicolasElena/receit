@@ -63,14 +63,18 @@ export default {
     console.log(data);
 
     const schema = Yup.object().shape({
-      user: Yup.string().required(),
+      user: Yup.number().required(),
       name: Yup.string().required(),
       prepare_method: Yup.string().required(),
       public_flag: Yup.boolean().required(),
       recipeIngredient: Yup.array(
         Yup.object().shape({
-          ingredient: Yup.string().required(),
-          measure: Yup.string().required(),
+          ingredient: Yup.object().shape({
+            name: Yup.string().required(),
+          }),
+          measure: Yup.object().shape({
+            name: Yup.string().required(),
+          }),
           amount: Yup.number().required(),
         })
       ),
@@ -90,12 +94,13 @@ export default {
       abortEarly: false,
     });
 
-    // const recipe = recipeRepository.create(data);
+    const recipe = recipeRepository.create(data);
 
-    // await userRepository.save(user);
+    console.log(recipe);
 
-    // console.log(user);
-    return response.status(201).json(data);
+    await recipeRepository.save(recipe);
+
+    return response.status(201).json(recipe);
   },
   // async index(request: Request, response: Response) {
   //   const usersRepository = getRepository(User);
