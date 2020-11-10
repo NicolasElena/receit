@@ -50,7 +50,7 @@ textarea {
   max-width: 700px;
 }
 
-#main{
+main{
   background: var(--color-box-base);
   width: 98.5%;
   height: 108rem;
@@ -59,7 +59,4 @@ textarea {
   margin-left: 1rem;
   margin-top: 2rem;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }

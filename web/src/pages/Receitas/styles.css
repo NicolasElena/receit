@@ -1,0 +1,70 @@
+#page-recipe{
+  width: 100vw;
+  height: 100vh;
+}
+
+.batata{
+  background: var(--color-box-base);
+  width: 98.5%;
+  height: 108rem;
+  border-radius: 0.8rem;
+  padding: 0 6.4rem;
+  margin-left: 1rem;
+  margin-top: 2rem;
+  overflow: hidden;
+}
+
+.cenoura{
+  width: 60rem;
+  height: 13rem;
+  margin: 0 75rem;
+  padding-bottom: 3rem;
+  display: grid;
+  grid-template-columns: 2fr;
+  grid-template-areas: 
+    "cat cat"
+    "input button"
+  ;
+}
+
+.cenoura input{
+  height: 5rem;
+  grid-area: input;
+  padding: 0.8rem;
+  margin-right: 5rem;
+  border-color: var(--color-txt-secondary);
+  border-style: solid;
+  border-radius: 2.3rem;
+  outline: none;
+  
+}
+
+.cenoura button{
+  grid-area: button;
+  width: 15rem;
+  height: 4.5rem;
+  color: var(--color-button-text);
+  background-color: var(--color-primary);
+  border: 0;
+  cursor: pointer;
+  border-radius: 5rem;
+  transition: background-color 0.3s;
+  outline: 0;
+
+  display: flex;
+	align-items: center;
+  justify-content: center;
+  
+  text-decoration: none;
+}
+
+.cenoura button:hover{
+  background: var(--color-primary-darker);
+}
+
+@media (min-width: 700px){
+  #page-recipe{
+    max-width: 100%;
+  }
+
+}

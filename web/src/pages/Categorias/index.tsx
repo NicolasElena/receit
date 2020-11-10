@@ -1,10 +1,11 @@
 import React from 'react'
 
+import './styles.css'
 import PageHeader from '../../Components/PageHeader';
 
 function Categorias() {
   return (
-    <div id="page-content" className="container">
+    <div id="page-cetegories" className="container">
       <PageHeader/>
       
       <main>

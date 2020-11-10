@@ -11,7 +11,7 @@ function MainPage() {
     <div id="page-content" className="container">
      <PageHeader/>
 
-     <main>
+     <main className="cenoura">
       <div> 
         <h1> Crie e busque novas receitas com </h1> 
         <img src={logoImg} alt="Logo"/>
