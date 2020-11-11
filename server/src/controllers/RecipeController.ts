@@ -28,6 +28,7 @@ export default {
 
     let serializedRecipeIngredient = [];
     let serializedRecipeCategories = [];
+    let serializedUser;
 
     if (Array.isArray(recipeIngredient)) {
       serializedRecipeIngredient = recipeIngredient.map((item) => {
@@ -47,11 +48,21 @@ export default {
       serializedRecipeCategories.push(JSON.parse(categories));
     }
 
+    if (Array.isArray(user)) {
+      serializedUser = user.map((item) => {
+        const jsonItem = JSON.parse(item);
+        return jsonItem;
+      });
+    } else {
+      serializedUser = JSON.parse(user);
+    }
+
     console.log(serializedRecipeIngredient);
     console.log(serializedRecipeCategories);
+    console.log(serializedUser);
 
     const data = {
-      user,
+      user: serializedUser,
       name,
       prepare_method,
       recipeIngredient: serializedRecipeIngredient,
@@ -63,7 +74,9 @@ export default {
     console.log(data);
 
     const schema = Yup.object().shape({
-      user: Yup.number().required(),
+      user: Yup.object().shape({
+        id: Yup.number().required(),
+      }),
       name: Yup.string().required(),
       prepare_method: Yup.string().required(),
       public_flag: Yup.boolean().required(),
@@ -95,30 +108,32 @@ export default {
     });
 
     const recipe = recipeRepository.create(data);
-
-    console.log(recipe);
-
     await recipeRepository.save(recipe);
+    console.log(recipe);
 
     return response.status(201).json(recipe);
   },
-  // async index(request: Request, response: Response) {
-  //   const usersRepository = getRepository(User);
+  async index(request: Request, response: Response) {
+    const recipeRepository = getRepository(Recipe);
 
-  //   const users = await usersRepository.find({
-  //     relations: ['recipes', 'image'],
-  //   });
+    const recipes = await recipeRepository.find({
+      relations: ['user', 'recipeIngredient', 'categories', 'images'],
+    });
 
-  //   return response.json(userView.renderMany(users));
-  // },
-  // async show(request: Request, response: Response) {
-  //   const { id } = request.params;
-  //   const usersRepository = getRepository(User);
+    return response.json(recipeView.renderMany(recipes));
+  },
 
-  //   const user = await usersRepository.findOneOrFail(id, {
-  //     relations: ['recipes', 'image'],
-  //   });
+  async show(request: Request, response: Response) {
+    const { id } = request.params;
+    const recipesRepository = getRepository(Recipe);
 
-  //   return response.json(userView.render(user));
-  // },
+    console.log(id);
+    console.log(recipesRepository);
+
+    const recipe = await recipesRepository.findOneOrFail(id, {
+      relations: ['user', 'recipeIngredient', 'categories', 'images'],
+    });
+
+    return response.json(recipeView.render(recipe));
+  },
 };

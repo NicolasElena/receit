@@ -3,7 +3,7 @@ import { Recipe } from './Recipe';
 import { Ingredient } from './Ingredient';
 import { Measure } from './Measure';
 
-@Entity()
+@Entity('RecipeIngredient')
 export class RecipeIngredient {
   @PrimaryGeneratedColumn('increment')
   public RecipeIngredientId!: number;

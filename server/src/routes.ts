@@ -19,6 +19,8 @@ routes.get('/users', UserController.index);
 //rotas recipes
 
 routes.post('/recipe', upload.array('images'), RecipeController.create);
+routes.get('/recipes/:id', RecipeController.show);
+routes.get('/recipes', RecipeController.index);
 
 //
 
