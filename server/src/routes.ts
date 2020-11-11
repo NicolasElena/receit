@@ -20,6 +20,7 @@ routes.get('/users', UserController.index);
 
 routes.post('/recipe', upload.array('images'), RecipeController.create);
 routes.get('/recipes/:id', RecipeController.show);
+routes.get('/recipes/user/:id', RecipeController.indexUserRecipes);
 routes.get('/recipes', RecipeController.index);
 
 //

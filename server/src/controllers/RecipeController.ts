@@ -3,8 +3,6 @@ import { getRepository } from 'typeorm';
 import * as Yup from 'yup';
 
 import { Recipe } from '../model/Recipe';
-import { RecipeImage } from '../model/RecipeImage';
-import recipeingredient_view from '../view/recipeingredient_view';
 import recipeView from '../view/Recipe_view';
 
 export default {
@@ -82,12 +80,8 @@ export default {
       public_flag: Yup.boolean().required(),
       recipeIngredient: Yup.array(
         Yup.object().shape({
-          ingredient: Yup.object().shape({
-            name: Yup.string().required(),
-          }),
-          measure: Yup.object().shape({
-            name: Yup.string().required(),
-          }),
+          ingredient: Yup.string().required(),
+          measure: Yup.string().required(),
           amount: Yup.number().required(),
         })
       ),
@@ -103,13 +97,16 @@ export default {
       ),
     });
 
+    console.log(schema);
+
     await schema.validate(data, {
       abortEarly: false,
     });
 
     const recipe = recipeRepository.create(data);
-    await recipeRepository.save(recipe);
     console.log(recipe);
+
+    await recipeRepository.save(recipe);
 
     return response.status(201).json(recipe);
   },
@@ -135,5 +132,20 @@ export default {
     });
 
     return response.json(recipeView.render(recipe));
+  },
+
+  async indexUserRecipes(request: Request, response: Response) {
+    const { id } = request.params;
+    const recipesRepository = getRepository(Recipe);
+
+    console.log(id);
+    console.log(recipesRepository);
+
+    const recipe = await recipesRepository.find({
+      relations: ['user', 'recipeIngredient', 'categories', 'images'],
+      where: { user: { id: id } },
+    });
+
+    return response.json(recipeView.renderMany(recipe));
   },
 };

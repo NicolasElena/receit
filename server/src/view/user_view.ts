@@ -8,17 +8,10 @@ export default {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
-      recipes: recipes.renderMany(user.recipes),
       image: userImage.render(user.image),
     };
   },
   renderMany(user: User[]) {
     return user.map((user) => this.render(user));
-  },
-  renderOnRecipes(user: User) {
-    return {
-      id: user.id,
-      firstName: user.firstName,
-    };
   },
 };

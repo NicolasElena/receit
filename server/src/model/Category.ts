@@ -14,7 +14,4 @@ export class Category {
 
   @Column()
   name: string;
-
-  @ManyToMany(() => Recipe, (recipe) => recipe.categories)
-  recipe: Recipe[];
 }

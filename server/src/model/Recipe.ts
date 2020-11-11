@@ -35,17 +35,16 @@ export class Recipe {
       cascade: ['insert', 'update'],
     }
   )
-  public recipeIngredient!: RecipeIngredient[];
+  recipeIngredient: RecipeIngredient[];
 
-  @ManyToMany(() => Category, (category) => category.recipe, {
+  @ManyToMany(() => Category, {
     cascade: ['insert', 'update'],
   })
   @JoinTable()
   categories: Category[];
 
-  @ManyToOne(() => User, (user) => user.recipes, {
-    cascade: ['insert', 'update'],
-  })
+  @ManyToOne(() => User, (user) => user.recipes, {})
+  @JoinColumn()
   user: User;
 
   @OneToMany(() => RecipeImage, (image) => image.recipe, {
