@@ -1,0 +1,67 @@
+.recipe-item{
+  width: 26rem;
+  height: 36rem;
+  margin-bottom: 2rem;
+  margin-right: 2rem;
+  background: var(--color-background-logo);
+  border-radius: 1.5rem;
+}
+
+.recipe-item h3{
+  padding-left: 1rem;
+}
+
+.recipe-things{
+  padding-left: 1.5rem;
+  color: var(--color-txt-secondary);
+  font-size: 1.rem;
+}
+
+.recipe-category{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+} 
+
+.recipe-ingredients{
+  display: flex;
+  justify-content: right;
+  margin-bottom: 1rem;
+}
+
+.recipe-item footer{
+  display: grid;
+  justify-content: flex-end;
+  grid-template-columns: 0.3fr;
+  grid-template-areas:
+  "cook cook"
+  "buttons buttons"
+  ;
+}
+
+.recipe-item footer button{
+  width: 4.5rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  padding-top: 0.5rem;
+  background: var(--color-background-logo);
+  outline: none;
+  border-style: solid;
+  border-radius: 1rem;
+  border-color: var(--color-txt-secondary);
+}
+
+.recipe-item footer .cook{
+  width: 10rem;
+  height: 3.5rem;
+  padding: 0.6rem;
+  display: flex;
+  justify-items: center;
+  grid-area: cook;
+  background: var(--color-button-cook);
+  outline: none;
+  border-style: none;
+  border-radius: 3rem;
+
+  font-size: 1.5rem;
+}

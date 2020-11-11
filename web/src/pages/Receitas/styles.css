@@ -62,6 +62,12 @@
   background: var(--color-primary-darker);
 }
 
+.recipes{
+  display: flex;
+  justify-self: center;
+  align-items: cen;
+}
+
 @media (min-width: 700px){
   #page-recipe{
     max-width: 100%;
