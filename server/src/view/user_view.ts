@@ -14,4 +14,13 @@ export default {
   renderMany(user: User[]) {
     return user.map((user) => this.render(user));
   },
+  renderRecipes(user: User) {
+    return {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      recipes: recipes.renderManyNoUser(user.recipes),
+      image: userImage.render(user.image),
+    };
+  },
 };

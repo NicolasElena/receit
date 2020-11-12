@@ -12,6 +12,12 @@ export default {
 
     const userRepository = getRepository(User);
 
+    const userExists = await userRepository.findOne({ where: { email } });
+
+    if (userExists) {
+      return response.status(409).json({ message: 'E-mail já cadastrado' });
+    }
+
     const requestImage = request.file as Express.Multer.File;
 
     const image = new UserImage();
@@ -64,5 +70,21 @@ export default {
     });
 
     return response.json(userView.render(user));
+  },
+  async showUserRecipes(request: Request, response: Response) {
+    const { id } = request.params;
+    const usersRepository = getRepository(User);
+
+    const user = await usersRepository.findOneOrFail(id, {
+      relations: [
+        'recipes',
+        'image',
+        'recipes.categories',
+        'recipes.recipeIngredient',
+        'recipes.images',
+      ],
+    });
+
+    return response.json(userView.renderRecipes(user));
   },
 };

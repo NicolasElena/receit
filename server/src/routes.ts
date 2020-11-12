@@ -13,6 +13,7 @@ const upload = multer(uploadConfig);
 //rotas users
 
 routes.post('/user', upload.single('image'), UserController.create);
+routes.get('/user/recipes/:id', UserController.showUserRecipes);
 routes.get('/users/:id', UserController.show);
 routes.get('/users', UserController.index);
 

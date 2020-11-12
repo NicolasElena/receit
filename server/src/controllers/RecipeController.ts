@@ -142,7 +142,7 @@ export default {
     console.log(recipesRepository);
 
     const recipe = await recipesRepository.find({
-      relations: ['user', 'recipeIngredient', 'categories', 'images'],
+      relations: ['recipeIngredient', 'categories', 'images'],
       where: { user: { id: id } },
     });
 
