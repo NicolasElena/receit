@@ -10,8 +10,8 @@ function Receitas() {
     <div id="page-recipe" className="container">
       <PageHeader/>
 
-      <div className="batata">
-        <div className="cenoura">
+      <div className="page-content">
+        <div className="recipe-search">
           <h2> Minhas Receitas </h2>  
           <input type="search" placeholder="Search"/>
           <button> Categorias </button>

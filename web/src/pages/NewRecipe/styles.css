@@ -1,0 +1,106 @@
+#page-newRecipe{
+  width: 100vw;
+  height: 100vh;
+}
+
+.page-content header{
+  margin-top: 1rem;
+  padding-top: 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 2rem;
+}
+
+.items{
+  width: 3rem;
+  height: 7.5rem;
+  display: grid;
+  grid-template-rows: 1rem 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: 
+  "item" "qtd" "q"
+}
+
+.add-items{
+  width: 60rem;
+  height: 50rem;
+  padding: 2rem 3rem;
+  text-align: center;
+  background: var(--color-background-logo);
+  border-radius: 3rem;
+}
+
+.add-items h3{
+  margin-bottom: 3rem;
+}
+
+
+.add-items input{
+  height: 5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-left: 1rem;
+  border-style: solid;
+  border-color: var(--color-text-hoover);
+  outline: none;
+
+  font-style: italic;
+}
+
+.add-items .ingrediente{
+  grid-area: "item";
+  width: 40rem;
+  margin-right: 1.5rem;
+}
+
+.add-items .qtd{
+  grid-area: "qtd";
+  width: 8rem;
+}
+
+.add-items .g{
+  width: 5.5rem;
+}
+
+.add-items input::placeholder{
+  color: var(--color-text-hoover)
+}
+
+.add-items .add-new-item{
+  margin-top: 28rem;
+  width: 18rem;
+  height: 4rem;
+  background-color: var(--color-txt-secondary);
+  border-style: none;
+  border-radius: 1.5rem;
+  outline: none;
+} 
+
+.page-content footer{
+  margin-top: 40rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-content footer button{
+  width: 15rem;
+  height: 6rem;
+  color: var(--color-button-text);
+  background-color: var(--color-primary);
+  outline: none;
+  border-style: none;
+  border-radius: 3rem;
+
+  font-size: 2rem;
+}
+
+@media (min-width: 700px){
+  #page-newRecipe{
+    max-width: 100%;
+  }
+
+}

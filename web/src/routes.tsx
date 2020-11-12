@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import Main from './pages/Main';
 import Receitas from './pages/Receitas'
 import Categorias from './pages/Categorias'
+import NewRecipe from './pages/NewRecipe'
 
 function Routes() {
   return (
@@ -14,6 +15,7 @@ function Routes() {
         <Route path="/login"  component={Login} />
         <Route path="/receitas" component={Receitas} />
         <Route path="/categorias" component={Categorias}/>
+        <Route path="/newRecipe" component={NewRecipe} />
       </Switch>
     </BrowserRouter>
   )

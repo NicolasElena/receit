@@ -3,7 +3,7 @@
   height: 100vh;
 }
 
-.batata{
+.page-content{
   background: var(--color-box-base);
   width: 98.5%;
   height: 108rem;
@@ -14,7 +14,7 @@
   overflow: hidden;
 }
 
-.cenoura{
+.recipe-search{
   width: 60rem;
   height: 13rem;
   margin: 0 75rem;
@@ -27,7 +27,7 @@
   ;
 }
 
-.cenoura input{
+.recipe-search input{
   height: 5rem;
   grid-area: input;
   padding: 0.8rem;
@@ -39,7 +39,7 @@
   
 }
 
-.cenoura button{
+.recipe-search button{
   grid-area: button;
   width: 15rem;
   height: 4.5rem;
@@ -58,7 +58,7 @@
   text-decoration: none;
 }
 
-.cenoura button:hover{
+.recipe-search button:hover{
   background: var(--color-primary-darker);
 }
 

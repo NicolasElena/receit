@@ -1,5 +1,6 @@
 .page-header{
   padding: 0.5rem;
+  height: 10rem;
   background: var(--color-box-base);
   border-bottom-right-radius: 0.8rem;
   border-bottom-left-radius: 0.8rem;
@@ -19,10 +20,18 @@
   justify-content: center;
 }
 
+.nav .coisas a{
+  margin-right: 5rem;
+}
+
 .nav .login{
   display: flex;
 	align-items: center;
   justify-content: center;
+}
+
+.nav .login a{
+  margin-right: 5rem;
 }
 
 .nav img{
@@ -33,7 +42,8 @@
 }
 
 .nav a{
-  flex: 1;
+  display: flex;
+  margin-right: 15rem;
   color: var(--color-text-base);
   font-size: 2.3rem;
   font: 400 1.6 Archivo;
@@ -41,7 +51,7 @@
 }
 
 .nav input{
-  width: 70rem;
+  width: 100%;
   height: 5rem;
   padding: 1.25rem 1.25rem;
   outline: 0;

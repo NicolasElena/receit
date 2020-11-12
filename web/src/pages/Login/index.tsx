@@ -7,29 +7,29 @@ import logoImg from '../../assets/Images/logo-min.png'
 
 function Login() {
   return (
-    <main className="page-login">
+    <div className="page-login">
       <div id="login-container">
         <div className="logo-container">
-          <Link to="/">
-          <img src={logoImg} alt="Receit"/>
-          </Link>
-        </div>
-        <div className="loginTxt">
-          <h1>Login</h1>
-        </div>
-
-        <div className="input-block" >
-          <input type="text" placeholder="E-mail" id="login" />
-          <input type="password" placeholder="Password" id="password" />
-        </div>
-
-        <div className="submit-container">
-          <Link to="/" className="submit-button"> 
-            Entrar
-          </Link>
-        </div>
+        <Link to="/">
+            <img src={logoImg} alt="Receit"/>
+            </Link>
+          </div>
+          <div className="loginTxt">
+            <h1>Login</h1>
+          </div>
+    
+          <div className="input-block" >
+            <input type="text" placeholder="E-mail" id="login" />
+            <input type="password" placeholder="Password" id="password" />
+          </div>
+    
+          <div className="submit-container">
+            <Link to="/" className="submit-button"> 
+              Entrar
+            </Link>
+          </div>
       </div>
-    </main>
+    </div>
   )
 }
 

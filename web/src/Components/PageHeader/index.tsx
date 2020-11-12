@@ -20,8 +20,12 @@ function PageHeader() {
             Receitas
           </Link>
 
+           <Link to="/newRecipe">
+              Nova Receita
+           </Link>
+
            <Link to="/categorias">
-               Categorias
+              Categorias
            </Link>
         </div>
 
