@@ -49,7 +49,6 @@ export default {
 
     await userRepository.save(user);
 
-    console.log(user);
     return response.status(201).json(user);
   },
   async index(request: Request, response: Response) {

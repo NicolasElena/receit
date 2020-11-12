@@ -5,6 +5,7 @@ import uploadConfig from './config/upload';
 
 import RecipeController from './controllers/RecipeController';
 import UserController from './controllers/UserController';
+import AuthController from './controllers/AuthController';
 
 const routes = Router();
 
@@ -24,6 +25,8 @@ routes.get('/recipes/:id', RecipeController.show);
 routes.get('/recipes/user/:id', RecipeController.indexUserRecipes);
 routes.get('/recipes', RecipeController.index);
 
-//
+// rota autenticação
+
+routes.post('/auth', AuthController.authenticate);
 
 export default routes;
