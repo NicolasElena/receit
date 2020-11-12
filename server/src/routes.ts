@@ -3,6 +3,8 @@ import multer from 'multer';
 
 import uploadConfig from './config/upload';
 
+import authMiddleware from './middlewares/authMiddleware';
+
 import RecipeController from './controllers/RecipeController';
 import UserController from './controllers/UserController';
 import AuthController from './controllers/AuthController';
@@ -16,7 +18,8 @@ const upload = multer(uploadConfig);
 routes.post('/user', upload.single('image'), UserController.create);
 routes.get('/user/recipes/:id', UserController.showUserRecipes);
 routes.get('/users/:id', UserController.show);
-routes.get('/users', UserController.index);
+//routes.get('/users', UserController.index);
+routes.get('/users', authMiddleware, UserController.index);
 
 //rotas recipes
 

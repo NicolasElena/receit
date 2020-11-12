@@ -54,6 +54,8 @@ export default {
   async index(request: Request, response: Response) {
     const usersRepository = getRepository(User);
 
+    console.log(request.userId);
+
     const users = await usersRepository.find({
       relations: ['recipes', 'image'],
     });
