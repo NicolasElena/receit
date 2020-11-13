@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 import { Recipe } from './Recipe';
 
-@Entity('recipeImages')
+@Entity('RecipeImages')
 export class RecipeImage {
   @PrimaryGeneratedColumn('increment')
   id: number;

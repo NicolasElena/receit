@@ -3,10 +3,15 @@ import {
   PrimaryGeneratedColumn,
   Column,
   OneToMany,
+  OneToOne,
   JoinColumn,
+  BeforeInsert,
+  BeforeUpdate,
 } from 'typeorm';
 import { Recipe } from './Recipe';
 import { UserImage } from './UserImage';
+
+import bcrypt from 'bcryptjs';
 
 @Entity('Users')
 export class User {
@@ -25,15 +30,21 @@ export class User {
   @Column()
   password: string;
 
+  @BeforeInsert()
+  @BeforeUpdate()
+  hashPassword() {
+    this.password = bcrypt.hashSync(this.password, 8);
+  }
+
+  @OneToOne(() => UserImage, (image) => image.user, {
+    cascade: ['insert', 'update'],
+  })
+  @JoinColumn()
+  image: UserImage;
+
   @OneToMany(() => Recipe, (recipe) => recipe.user, {
     cascade: ['insert', 'update'],
   })
   @JoinColumn()
   recipes: Recipe[];
-
-  @OneToMany(() => UserImage, (image) => image.user, {
-    cascade: ['insert', 'update'],
-  })
-  @JoinColumn({ name: 'user_id' })
-  image: UserImage;
 }

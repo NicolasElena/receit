@@ -2,12 +2,12 @@ import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
-  ManyToOne,
+  OneToOne,
   JoinColumn,
 } from 'typeorm';
 import { User } from './User';
 
-@Entity('recipeImages')
+@Entity('userImages')
 export class UserImage {
   @PrimaryGeneratedColumn('increment')
   id: number;
@@ -15,7 +15,6 @@ export class UserImage {
   @Column()
   path: string;
 
-  @ManyToOne(() => User, (user) => user.image)
-  @JoinColumn({ name: 'user_id' })
+  @OneToOne(() => User, (user) => user.image)
   user: User;
 }
