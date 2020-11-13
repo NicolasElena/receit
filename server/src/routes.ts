@@ -3,6 +3,7 @@ import multer from 'multer';
 
 import uploadConfig from './config/upload';
 
+//autenticação JWT
 import authMiddleware from './middlewares/authMiddleware';
 
 import RecipeController from './controllers/RecipeController';
