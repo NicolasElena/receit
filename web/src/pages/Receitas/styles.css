@@ -65,7 +65,8 @@
 .recipes{
   display: flex;
   justify-self: center;
-  align-items: cen;
+  align-items: center;
+  
 }
 
 @media (min-width: 700px){

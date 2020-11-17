@@ -1,6 +1,6 @@
 .recipe-item{
   width: 26rem;
-  height: 36rem;
+  height: 40rem;
   margin-bottom: 2rem;
   margin-right: 2rem;
   background: var(--color-background-logo);
@@ -30,6 +30,7 @@
 }
 
 .recipe-item footer{
+  margin-top: 5rem;
   display: grid;
   justify-content: flex-end;
   grid-template-columns: 0.3fr;

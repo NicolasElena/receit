@@ -26,7 +26,6 @@ function RecipeItem() {
           </div>
 
         </div>
-        
         <footer>
           <button className="cook">
             <img src={cookImg} alt="cook"/>

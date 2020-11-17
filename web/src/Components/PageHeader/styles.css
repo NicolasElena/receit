@@ -43,7 +43,7 @@
 
 .nav a{
   display: flex;
-  margin-right: 15rem;
+  margin-right: 10rem;
   color: var(--color-text-base);
   font-size: 2.3rem;
   font: 400 1.6 Archivo;
