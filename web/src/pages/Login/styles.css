@@ -1,11 +1,11 @@
-.page-login{
+.page-login {
   width: 414px;
   height: 584px;
   background: var(--color-box-base);
   border-radius: 5rem;
 }
 
-.logo-container{
+.logo-container {
   width: 100px;
   height: 104px;
   padding-top: 1.5rem;
@@ -16,14 +16,14 @@
   border-radius: 5rem;
 }
 
-.logo-container img{
+.logo-container img {
   width: 36px;
   height: 72px;
   left: 10px;
   top: 10px;
 }
 
-.loginTxt h1{
+.loginTxt h1 {
   display: flex;
   padding: 1.5rem;
   margin-top: 2rem;
@@ -36,10 +36,10 @@
 .input-block {
   height: 5.6rem;
   margin-top: 2rem;
-  padding:  0 4rem;
+  padding: 0 4rem;
 }
 
-.input-block input{
+.input-block input {
   width: 35rem;
   height: 5.5rem;
   padding: 1.25rem 1.25rem;
@@ -50,7 +50,7 @@
   outline: 0;
 }
 
-.input-block ::placeholder{
+.input-block ::placeholder {
   font-family: Archivo;
   font-size: 17px;
   font-style: italic;
@@ -58,16 +58,15 @@
   line-height: 18px;
   letter-spacing: -0.009999999776482582px;
   text-align: left;
-  color: var(--color-txt-secondary  );
+  color: var(--color-txt-secondary);
 }
 
-
-.submit-container{
+.submit-container {
   margin-top: 13rem;
   padding: 0 14.3rem;
 }
 
-.submit-container a{
+.submit-container a {
   width: 15rem;
   height: 4.5rem;
   color: var(--color-button-text);
@@ -80,12 +79,12 @@
   outline: 0;
 
   display: flex;
-	align-items: center;
+  align-items: center;
   justify-content: center;
-  
+
   text-decoration: none;
 }
 
-.submit-container a:hover{
+.submit-container a:hover {
   background: var(--color-primary-darker);
 }

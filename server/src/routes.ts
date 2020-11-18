@@ -1,56 +1,36 @@
-import express, { response } from 'express';
-import knex from './database/connection';
-import UsersController from './controllers/UsersControllers';
-import RecipeController from './controllers/RecipesController';
+import { Router } from 'express';
+import multer from 'multer';
 
-const routes = express.Router();
-const usersController = new UsersController();
-const recipeController = new RecipeController();
+import uploadConfig from './config/upload';
 
-routes.get('/', (request, response) => {
-  return response.json({ message: 'oi' });
-});
+//autenticação JWT
+import authMiddleware from './middlewares/authMiddleware';
 
-routes.get('/recipes/:id', recipeController.show);
+import RecipeController from './controllers/RecipeController';
+import UserController from './controllers/UserController';
+import AuthController from './controllers/AuthController';
 
-routes.get('/recipes', recipeController.index);
+const routes = Router();
 
-routes.get('/recipess', async (request, response) => {
-  const trx = await knex.transaction();
+const upload = multer(uploadConfig);
 
-  const serializedRecipes = await knex
-    .select('*')
-    .from('recipes')
-    .then(async (recipe) => {
-      console.log(recipe);
-      const id = recipe.map;
+//rotas users
 
-      const ingredients = await knex('recipe_ingredients')
-        .select(
-          'ingredients.ingredient',
-          'recipe_ingredients.amount',
-          'measures.measure'
-        )
-        .innerJoin(
-          'ingredients',
-          'recipe_ingredients.ingredient_id',
-          'ingredients.id'
-        )
-        .innerJoin('measures', 'recipe_ingredients.measure_id', 'measures.id')
-        .where('recipe_id', recipe);
+routes.post('/user', upload.single('image'), UserController.create);
+routes.get('/user/recipes/:id', UserController.showUserRecipes);
+routes.get('/users/:id', authMiddleware, UserController.show);
+//routes.get('/users', UserController.index);
+routes.get('/users', authMiddleware, UserController.index);
 
-      return {
-        //retornar aqui a estrutura do json?
-      };
-    });
+//rotas recipes
 
-  return response.json(serializedRecipes);
-});
+routes.post('/recipe', upload.array('images'), RecipeController.create);
+routes.get('/recipes/:id', RecipeController.show);
+routes.get('/recipes/user/:id', RecipeController.indexUserRecipes);
+routes.get('/recipes', RecipeController.index);
 
-routes.post('/users', usersController.create);
+// rota autenticação
 
-routes.post('/recipes', recipeController.create);
-
-routes.get('/ingredient', recipeController.listIng);
+routes.post('/auth', AuthController.authenticate);
 
 export default routes;
