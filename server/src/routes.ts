@@ -18,7 +18,7 @@ const upload = multer(uploadConfig);
 
 routes.post('/user', upload.single('image'), UserController.create);
 routes.get('/user/recipes/:id', UserController.showUserRecipes);
-routes.get('/users/:id', UserController.show);
+routes.get('/users/:id', authMiddleware, UserController.show);
 //routes.get('/users', UserController.index);
 routes.get('/users', authMiddleware, UserController.index);
 

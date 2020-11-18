@@ -15,6 +15,7 @@ export default function authMiddleware(
 ) {
   const { authorization } = request.headers;
 
+  //
   if (!authorization) {
     return response.sendStatus(401);
   }
@@ -26,7 +27,6 @@ export default function authMiddleware(
     const data = jwt.verify(token, 'receit');
 
     console.log(data);
-
     //informação do payload com o id do user
 
     const { id } = data as TokenPayload;

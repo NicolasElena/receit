@@ -28,7 +28,12 @@ export default {
     const token = jwt.sign({ id: user.id }, 'receit', { expiresIn: '1d' });
 
     return response.json({
-      user,
+      user: {
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+      },
       token,
     });
   },
