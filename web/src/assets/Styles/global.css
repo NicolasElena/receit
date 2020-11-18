@@ -1,19 +1,19 @@
-:root{
+:root {
   font-size: 60%;
 
-  --color-primary: #F13030;
-  --color-primary-darker: #B22727;
-  --color-background-web: #F36C6C;
-  --color-txt-secondary: #CF8989;
-  --color-text-hoover: #E5D1D1;
-  --color-text-base: #512727 ;
-  --color-button-primary: #00AF54;
+  --color-primary: #f13030;
+  --color-primary-darker: #b22727;
+  --color-background-web: #f36c6c;
+  --color-txt-secondary: #cf8989;
+  --color-text-hoover: #e5d1d1;
+  --color-text-base: #512727;
+  --color-button-primary: #00af54;
   --color-button-secondary: #009246;
   --color-line-in-white: #777777;
-  --color-box-base: #F6F5F5;
-  --color-button-text: #FFFFFF;
-  --color-button-cook: #F1F1F1;
-  --color-background-logo: #FFFFFF;
+  --color-box-base: #f6f5f5;
+  --color-button-text: #ffffff;
+  --color-button-cook: #f1f1f1;
+  --color-background-logo: #ffffff;
 }
 
 * {
@@ -22,18 +22,19 @@
   box-sizing: border-box;
 }
 
-html, body, #root{
+html,
+body,
+#root {
   height: 100vh;
 }
 
-body{
-  background:var(--color-background-web);
+body {
+  background: var(--color-background-web);
   background-image: url(../Images/Desktop_bg.svg);
   background-size: cover;
-  }
+}
 
-
-#root{
+#root {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -47,12 +48,12 @@ textarea {
   color: var(--color-text-base);
 }
 
-.container{
+.container {
   width: 90vw;
   max-width: 700px;
 }
 
-main{
+main {
   background: var(--color-box-base);
   width: 98.5%;
   height: 108rem;
