@@ -1,45 +1,48 @@
-import React from 'react'
+import React from 'react';
 
-import './styles.css'
+import './styles.css';
 
-import recipeImg from '../../assets/Images/Media.png'
-import forkImg from '../../assets/Images/Fork.png'
-import likeImg from '../../assets/Images/Like.png'
-import cookImg from '../../assets/Images/Cook.png'
+//import recipeImg from '../../assets/Images/Media.png';
+import forkImg from '../../assets/Images/Fork.png';
+import likeImg from '../../assets/Images/Like.png';
+import cookImg from '../../assets/Images/Cook.png';
+import { Recipe } from '../../@types/recipes';
 
-function RecipeItem() {
-  return (
-    <article className="recipe-item">
-      <header className="recipe">
-        <img src={recipeImg} alt="Recipe"/>
-      </header>
-          <h3> Nome da receita </h3>
-        <div className="recipe-things">
-          <div  className="recipe-category">
-            Categoria 1
-            Categoria 2 
-          </div>
-          <div className="recipe-ingredients">
-              Ingrediente 1
-              Ingrediente 2
-              Ingrediente 3
-          </div>
-
-        </div>
-        <footer>
-          <button className="cook">
-            <img src={cookImg} alt="cook"/>
-            Nico
-          </button>
-          <button>
-            <img src={forkImg} alt="Fork"/>
-          </button>
-          <button>
-            <img src={likeImg} alt="Like"/>
-          </button>
-        </footer>
-    </article>
-  )
+interface RecipeProps {
+  recipe: Recipe;
 }
+
+const RecipeItem: React.FC<RecipeProps> = ({ recipe }) => {
+  return (
+    <article className='recipe-item'>
+      <header className='recipe'>
+        <img src={recipe.images[0].url} alt='Recipe' />
+      </header>
+      <h3> {recipe.name} </h3>
+      <div className='recipe-things'>
+        {recipe.categories.map((category) => {
+          return <div className='recipe-category'>{category.name}</div>;
+        })}
+        {recipe.ingredients.slice(0, 2).map((ingredient) => {
+          return (
+            <div className='recipe-ingredients'>{ingredient.ingredient}</div>
+          );
+        })}
+      </div>
+      <footer>
+        <button className='cook'>
+          <img src={cookImg} alt='cook' />
+          {recipe.user}
+        </button>
+        <button>
+          <img src={forkImg} alt='Fork' />
+        </button>
+        <button>
+          <img src={likeImg} alt='Like' />
+        </button>
+      </footer>
+    </article>
+  );
+};
 
 export default RecipeItem;
