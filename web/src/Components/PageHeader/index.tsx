@@ -35,7 +35,7 @@ function PageHeader() {
         />
 
         <div className="login">
-          <Link to="/sign">
+          <Link to="/register">
            <button>
              Registrar
            </button>
