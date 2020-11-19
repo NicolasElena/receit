@@ -66,7 +66,7 @@
   padding: 0 14.3rem;
 }
 
-.submit-container a {
+.submit-container button {
   width: 15rem;
   height: 4.5rem;
   color: var(--color-button-text);
