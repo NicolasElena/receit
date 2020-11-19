@@ -6,6 +6,7 @@ import Main from './pages/Main';
 import Receitas from './pages/Receitas'
 import Categorias from './pages/Categorias'
 import NewRecipe from './pages/NewRecipe'
+import Register from './pages/Register'
 
 function Routes() {
   return (
@@ -16,6 +17,7 @@ function Routes() {
         <Route path="/receitas" component={Receitas} />
         <Route path="/categorias" component={Categorias}/>
         <Route path="/newRecipe" component={NewRecipe} />
+        <Route path="/register" component={Register} />
       </Switch>
     </BrowserRouter>
   )
