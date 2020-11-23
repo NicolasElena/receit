@@ -15,7 +15,7 @@ export class RecipeImage {
   @Column()
   path: string;
 
-  @ManyToOne(() => Recipe, (recipe) => recipe.images)
+  @ManyToOne(() => Recipe, (recipe) => recipe.images, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'recipe_id' })
   recipe: Recipe;
 }

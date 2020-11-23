@@ -119,7 +119,6 @@ export default {
 
     return response.json(recipeView.renderMany(recipes));
   },
-
   async show(request: Request, response: Response) {
     const { id } = request.params;
     const recipesRepository = getRepository(Recipe);
@@ -133,7 +132,6 @@ export default {
 
     return response.json(recipeView.render(recipe));
   },
-
   async indexUserRecipes(request: Request, response: Response) {
     const { id } = request.params;
     const recipesRepository = getRepository(Recipe);
@@ -147,5 +145,31 @@ export default {
     });
 
     return response.json(recipeView.renderMany(recipe));
+  },
+  async deleteRecipe(request: Request, response: Response) {
+    const { id } = request.params;
+    const recipesRepository = getRepository(Recipe);
+
+    const res = await recipesRepository.delete(id);
+    console.log(res);
+
+    if (res.affected) {
+      return response.json({ message: 'receita apagada' });
+    }
+
+    return response.json({ message: 'err' });
+  },
+  async updateRecipe(request: Request, response: Response) {
+    const { id } = request.params;
+    const recipesRepository = getRepository(Recipe);
+
+    const res = await recipesRepository.delete(id);
+    console.log(res);
+
+    if (res.affected) {
+      return response.json({ message: 'receita apagada' });
+    }
+
+    return response.json({ message: 'err' });
   },
 };

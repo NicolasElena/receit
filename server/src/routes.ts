@@ -26,11 +26,7 @@ routes.get('/users', authMiddleware, UserController.index);
 
 routes.post('/recipe', upload.array('images'), RecipeController.create);
 routes.get('/recipes/:id', RecipeController.show);
-routes.get(
-  '/recipes/user/:id',
-  authMiddleware,
-  RecipeController.indexUserRecipes
-);
+routes.delete('/recipes/:id', RecipeController.deleteRecipe);
 routes.get('/recipes', RecipeController.index);
 
 // rota autenticação

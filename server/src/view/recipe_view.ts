@@ -6,6 +6,7 @@ import recipeImage from './recipe_image_view';
 export default {
   render(recipe: Recipe) {
     return {
+      id: recipe.id,
       user: recipe.user.firstName,
       name: recipe.name,
       prepare_method: recipe.prepare_method,
@@ -20,6 +21,7 @@ export default {
   },
   renderNoUser(recipe: Recipe) {
     return {
+      id: recipe.id,
       name: recipe.name,
       prepare_method: recipe.prepare_method,
       public_flag: recipe.public_flag,

@@ -39,11 +39,14 @@ export class Recipe {
 
   @ManyToMany(() => Category, {
     cascade: ['insert', 'update'],
+    onDelete: 'CASCADE',
   })
   @JoinTable()
   categories: Category[];
 
-  @ManyToOne(() => User, (user) => user.recipes, {})
+  @ManyToOne(() => User, (user) => user.recipes, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn()
   user: User;
 
