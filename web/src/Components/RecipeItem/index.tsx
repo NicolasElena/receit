@@ -2,7 +2,7 @@ import React from 'react';
 
 import './styles.css';
 
-//import recipeImg from '../../assets/Images/Media.png';
+// import recipeImg from '../../assets/Images/Media.png';
 import forkImg from '../../assets/Images/Fork.png';
 import likeImg from '../../assets/Images/Like.png';
 import cookImg from '../../assets/Images/Cook.png';
@@ -15,17 +15,18 @@ interface RecipeProps {
 const RecipeItem: React.FC<RecipeProps> = ({ recipe }) => {
   return (
     <article className='recipe-item'>
-      <header className='recipe'>
+      <div className='recipe-image'>
         <img src={recipe.images[0].url} alt='Recipe' />
-      </header>
-      <h3> {recipe.name} </h3>
+      </div>
+
+      <h3>{recipe.name} </h3>
       <div className='recipe-things'>
         {recipe.categories.map((category) => {
-          return <div className='recipe-category'>{category.name}</div>;
+          return <div className='recipe-category'> '{category.name}' </div>;
         })}
         {recipe.ingredients.slice(0, 2).map((ingredient) => {
           return (
-            <div className='recipe-ingredients'>{ingredient.ingredient}</div>
+            <div className='recipe-ingredients'>-{ingredient.ingredient}</div>
           );
         })}
       </div>

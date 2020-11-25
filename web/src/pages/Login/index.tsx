@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent, useContext, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 import './styles.css';
@@ -7,29 +7,25 @@ import logoImg from '../../assets/Images/logo-min.png';
 import './styles.css';
 import api from '../../services/api';
 
+import AuthContext from '../../Context/auth';
+
 interface LoginProps {}
 
-export default function Login() {
+const Login: React.FC = () => {
   //const history = useHistory();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  async function handleSubmit(e: FormEvent) {
+  //context
+  const context = useContext(AuthContext);
+
+  console.log(context);
+
+  async function handleLogin(e: FormEvent) {
     e.preventDefault();
 
-    // console.log(email, password);
-
-    const dataLogin = {
-      email: email,
-      password: password,
-    };
-
-    console.log(dataLogin);
-
-    await api.post('auth', dataLogin).then((resp) => {
-      console.log(resp.data);
-    });
+    context.Login();
   }
 
   return (
@@ -43,7 +39,7 @@ export default function Login() {
         <div className='loginTxt'>
           <h1>Login</h1>
         </div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleLogin}>
           <div className='input-block'>
             <input
               type='text'
@@ -70,4 +66,6 @@ export default function Login() {
       </div>
     </div>
   );
-}
+};
+
+export default Login;
