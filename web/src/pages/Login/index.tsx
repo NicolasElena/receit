@@ -1,31 +1,24 @@
-import React, { FormEvent, useContext, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { FormEvent, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import './styles.css';
 
 import logoImg from '../../assets/Images/logo-min.png';
 import './styles.css';
-import api from '../../services/api';
 
-import AuthContext from '../../Context/auth';
-
-interface LoginProps {}
+import { useAuth } from '../../Context/auth';
 
 const Login: React.FC = () => {
-  //const history = useHistory();
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  //context
-  const context = useContext(AuthContext);
-
-  console.log(context);
+  //context hook useAuth
+  const context = useAuth();
 
   async function handleLogin(e: FormEvent) {
     e.preventDefault();
 
-    context.Login();
+    context.Login(email, password);
   }
 
   return (
