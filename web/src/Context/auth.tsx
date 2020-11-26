@@ -7,11 +7,15 @@ interface AuthContextData {
   user: object | null;
   Login(email: String, password: String): Promise<void>;
   Logout(): void;
+  CreateUser(newUser: newUser): Promise<void>;
 }
 
-interface UserLoginData {
-  email: string;
+interface newUser {
+  firstName: string;
+  lastName: string;
   password: string;
+  email: string;
+  image?: File;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -54,15 +58,27 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   async function Logout() {
     setUser(null);
-    sessionStorage.removeItem('@Web:user');
-    sessionStorage.removeItem('@Web:token');
+
+    localStorage.removeItem('@Web:user');
+    localStorage.removeItem('@Web:token');
 
     history.push('/');
   }
 
+  async function CreateUser(newUser: newUser) {
+    console.log(newUser);
+    const response = await api.post('/user', {
+      firstName: newUser.firstName,
+      lastName: newUser.lastName,
+      email: newUser.email,
+      password: newUser.password,
+      image: newUser.image,
+    });
+  }
+
   return (
     <AuthContext.Provider
-      value={{ signed: Boolean(user), user, Login, Logout }}
+      value={{ signed: Boolean(user), user, Login, Logout, CreateUser }}
     >
       {children}
     </AuthContext.Provider>

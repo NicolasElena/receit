@@ -10,7 +10,6 @@ function Main() {
   return (
     <div id='page-content' className='container'>
       <PageHeader />
-
       <main>
         <div>
           <h1> Crie e busque novas receitas com </h1>
