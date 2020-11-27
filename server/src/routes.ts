@@ -31,6 +31,6 @@ routes.get('/recipes', RecipeController.index);
 
 // rota autenticação
 
-routes.post('/auth', AuthController.authenticate);
+routes.post('/login', AuthController.authenticate);
 
 export default routes;

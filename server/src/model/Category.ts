@@ -1,11 +1,4 @@
-import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-  ManyToMany,
-  JoinColumn,
-} from 'typeorm';
-import { Recipe } from './Recipe';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('Categories')
 export class Category {
