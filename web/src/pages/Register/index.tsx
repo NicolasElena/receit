@@ -15,7 +15,7 @@ const Register: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repassword, setRePassword] = useState('');
-  const [image, setImage] = useState<File>();
+  const [image, setImage] = useState<File[]>([]);
 
   const context = useAuth();
 
@@ -28,22 +28,29 @@ const Register: React.FC = () => {
 
     data.append('firstName', firstName);
     data.append('lastName', lastName);
-    data.append('password', password);
     data.append('email', email);
-    if (image !== undefined) data.append('image', image);
+    data.append('password', password);
+    image.forEach((image) => {
+      data.append('image', image);
+    });
+    console.log({
+      firstName,
+      lastName,
+      email,
+      password,
+      image,
+    });
 
-    // context.CreateUser();
-    console.log(data);
+    context.CreateUser(data);
   }
 
   function handleSelectImage(e: ChangeEvent<HTMLInputElement>) {
     if (!e.target.files) {
       return;
     }
-    const selectedImage = e.target.files[0];
+    const selectedImage = Array.from(e.target.files);
 
     setImage(selectedImage);
-    console.log(image);
   }
 
   return (

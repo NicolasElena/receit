@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, {
+  createContext,
+  FormEvent,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import history from '../history';
 import api from '../services/api';
 
@@ -7,7 +13,7 @@ interface AuthContextData {
   user: object | null;
   Login(email: String, password: String): Promise<void>;
   Logout(): void;
-  CreateUser(newUser: newUser): Promise<void>;
+  CreateUser(userData: FormData): Promise<void>;
 }
 
 interface newUser {
@@ -15,7 +21,7 @@ interface newUser {
   lastName: string;
   password: string;
   email: string;
-  image?: File;
+  image?: File[];
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -65,15 +71,10 @@ export const AuthProvider: React.FC = ({ children }) => {
     history.push('/');
   }
 
-  async function CreateUser(newUser: newUser) {
-    console.log(newUser);
-    const response = await api.post('/user', {
-      firstName: newUser.firstName,
-      lastName: newUser.lastName,
-      email: newUser.email,
-      password: newUser.password,
-      image: newUser.image,
-    });
+  async function CreateUser(userData: FormData) {
+    console.log(userData);
+
+    const response = await api.post('/user', userData);
   }
 
   return (
