@@ -1,10 +1,4 @@
-import React, {
-  createContext,
-  FormEvent,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import history from '../history';
 import api from '../services/api';
 
@@ -75,6 +69,13 @@ export const AuthProvider: React.FC = ({ children }) => {
     console.log(userData);
 
     const response = await api.post('/user', userData);
+
+    //data com password!
+    console.log(response.data);
+
+    alert('usuário cadastrado');
+
+    history.push('/login');
   }
 
   return (

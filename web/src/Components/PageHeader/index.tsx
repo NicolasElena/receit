@@ -25,7 +25,7 @@ function PageHeader() {
 
           <div className='coisas'>
             <Link to='/receitas'>Receitas</Link>
-            <Link to='/newRecipe'>Nova Receita</Link>
+            <Link to='/receitas'>Minhas Receitas</Link>
             <Link to='/categorias'>Categorias</Link>
           </div>
 
@@ -49,7 +49,6 @@ function PageHeader() {
 
         <div className='coisas'>
           <Link to='/receitas'>Receitas</Link>
-          <Link to='/newRecipe'>Nova Receita</Link>
           <Link to='/categorias'>Categorias</Link>
         </div>
 

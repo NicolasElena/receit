@@ -1,4 +1,5 @@
 export interface Recipe {
+  id: number;
   user: string;
   name: string;
   prepare_method: string;

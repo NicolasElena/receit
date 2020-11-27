@@ -3,10 +3,12 @@ import React from 'react';
 import './styles.css';
 
 // import recipeImg from '../../assets/Images/Media.png';
+
 import forkImg from '../../assets/Images/Fork.png';
 import likeImg from '../../assets/Images/Like.png';
 import cookImg from '../../assets/Images/Cook.png';
 import { Recipe } from '../../@types/recipes';
+import { Link } from 'react-router-dom';
 
 interface RecipeProps {
   recipe: Recipe;
@@ -22,11 +24,18 @@ const RecipeItem: React.FC<RecipeProps> = ({ recipe }) => {
       <h3>{recipe.name} </h3>
       <div className='recipe-things'>
         {recipe.categories.map((category) => {
-          return <div className='recipe-category'> '{category.name}' </div>;
+          return (
+            <div key={category.name} className='recipe-category'>
+              {' '}
+              '{category.name}'{' '}
+            </div>
+          );
         })}
         {recipe.ingredients.slice(0, 2).map((ingredient) => {
           return (
-            <div className='recipe-ingredients'>-{ingredient.ingredient}</div>
+            <div key={ingredient.ingredient} className='recipe-ingredients'>
+              -{ingredient.ingredient}
+            </div>
           );
         })}
       </div>
@@ -35,8 +44,10 @@ const RecipeItem: React.FC<RecipeProps> = ({ recipe }) => {
           <img src={cookImg} alt='cook' />
           {recipe.user}
         </button>
-        <button>
-          <img src={forkImg} alt='Fork' />
+        <button className='Fork'>
+          <Link to={`/recipes/${recipe.id}`}>
+            <img src={forkImg} alt='Fork' />
+          </Link>
         </button>
         <button>
           <img src={likeImg} alt='Like' />
