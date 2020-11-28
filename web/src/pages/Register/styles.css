@@ -119,7 +119,26 @@
   text-decoration: none;
   transition: background-color 0.2s;
   margin-top: 3.2rem;
+  outline: none;
 }
+
+input[type=file]::-webkit-file-upload-button {
+  border: none;
+  cursor: pointer;
+  padding: .2em .4em;
+  border-radius: .2em;
+  color: var(--color-button-text);
+  background-color: #f13030;
+  transition: 2s;
+  font-weight: 700;
+  font-size: 10pt;
+}
+
+input[type=file]::-webkit-file-upload-button:hover {
+  background-color: var(--color-primary-darker);
+  border: none;
+}
+ 
 
 @media (min-width: 700px) {
   #page-register {

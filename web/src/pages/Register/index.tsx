@@ -119,6 +119,7 @@ const Register: React.FC = () => {
             />
             <div className='file-upload'>
               <Input
+                className="btn-img"
                 type='file'
                 label='Avatar'
                 name='image'
