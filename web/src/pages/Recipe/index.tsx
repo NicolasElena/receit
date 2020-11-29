@@ -28,7 +28,6 @@ function FullRecipe() {
     <div id='page-recipe' className='container'>
       <PageHeader />
       <div className='page-content'></div>
-      <div></div>
     </div>
   );
 }
