@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import Input from '../../Components/Input';
 
 import PageHeader from '../../Components/PageHeader';
 
+import { FiPlus } from 'react-icons/fi';
+
 import './styles.css';
+import Select from '../../Components/Select';
 
 function NewRecipe() {
+  const [recipeName, setRecipeName] = useState('');
   const [recipeIngredients, setRecipeIngredients] = useState([
     {
       ingredient: '',
@@ -13,6 +17,13 @@ function NewRecipe() {
       measure: '',
     },
   ]);
+  const [categories, setCategories] = useState([
+    {
+      name: '',
+    },
+  ]);
+  const [images, setImages] = useState<File[]>([]);
+  const [previewImages, setPreviewImages] = useState<string[]>([]);
 
   function addNewRecipeIngredient() {
     setRecipeIngredients([
@@ -22,6 +33,27 @@ function NewRecipe() {
         amount: '',
         measure: '',
       },
+    ]);
+  }
+
+  function addNewCategory() {
+    setCategories([
+      ...categories,
+      {
+        name: '',
+      },
+    ]);
+  }
+
+  function removeLastCategory() {
+    const index = categories.length;
+    setCategories([...categories.slice(0, index - 1)]);
+  }
+
+  function removeRecipeIngredient(index: number) {
+    setRecipeIngredients([
+      ...recipeIngredients.slice(0, index),
+      ...recipeIngredients.slice(index + 1),
     ]);
   }
 
@@ -41,6 +73,32 @@ function NewRecipe() {
     setRecipeIngredients(updateRecipeIngredient);
   }
 
+  function setCategoriesValue(position: number, field: string, value: string) {
+    const updateCategories = categories.map((recipeIngredient, index) => {
+      if (index === position) {
+        return { ...recipeIngredient, [field]: value };
+      }
+      return recipeIngredient;
+    });
+    setCategories(updateCategories);
+  }
+
+  function handleSelectImages(e: ChangeEvent<HTMLInputElement>) {
+    if (!e.target.files) {
+      return;
+    }
+
+    const selectedImages = Array.from(e.target.files);
+
+    setImages(selectedImages);
+
+    const selectedImagesPreview = selectedImages.map((image) => {
+      return URL.createObjectURL(image);
+    });
+
+    setPreviewImages(selectedImagesPreview);
+  }
+
   return (
     // Criar componente do input e fazer botão "add-new-item" adicionar sua função!
     //o botão deve criar um novo input -> item
@@ -53,80 +111,163 @@ function NewRecipe() {
           {' '}
           <h2> Cadastrar Receita </h2>{' '}
         </header>
-
-        <fieldset className='add-items'>
-          <legend>
-            <div className='ingredients-items'>
-              <h2>Ingredientes</h2>
-            </div>
-          </legend>
-
-          <div className='item-group'>
-            {recipeIngredients.map((recipeIngredient, index) => {
-              return (
-                <div className='items'>
-                  <input
-                    name='ingredient'
-                    type='text'
-                    className='ingrediente'
-                    placeholder='Ingrediente'
-                    value={recipeIngredient.ingredient}
+        <form>
+          <div className='name-categories'>
+            <input
+              name='recipeName'
+              type='text'
+              className='recipeName'
+              placeholder='Nome da Receita'
+              value={recipeName}
+              onChange={(e) => {
+                setRecipeName(e.target.value);
+              }}
+            />
+            <div className='categories-container'>
+              {categories.map((category, index) => {
+                return (
+                  <Select
+                    name='category'
+                    label='Categoria(s)'
+                    value={category.name}
                     onChange={(e) => {
-                      setRecipeIngredientValue(
-                        index,
-                        'ingredient',
-                        e.target.value
-                      );
+                      setCategoriesValue(index, 'name', e.target.value);
                     }}
+                    options={[
+                      { value: { name: 'Carne' }, label: 'Carne' },
+                      { value: { name: 'Vegetariana' }, label: 'Vegetariana' },
+                      { value: { name: 'Doce' }, label: 'Doce' },
+                    ]}
                   />
-                  <input
-                    name='amount'
-                    type='amount'
-                    className='qtd'
-                    placeholder='Qtd'
-                    value={recipeIngredient.amount}
-                    onChange={(e) =>
-                      setRecipeIngredientValue(index, 'amount', e.target.value)
-                    }
-                  />
-                  <input
-                    name='measure'
-                    placeholder='(g)'
-                    className='g'
-                    type='measure'
-                    value={recipeIngredient.measure}
-                    onChange={(e) =>
-                      setRecipeIngredientValue(index, 'measure', e.target.value)
-                    }
-                  />
-                </div>
-              );
-            })}
+                );
+              })}
+              <button
+                type='button'
+                className='add-category'
+                onClick={addNewCategory}
+              >
+                +
+              </button>
+              <button
+                type='button'
+                className='remove-category'
+                onClick={removeLastCategory}
+              >
+                -
+              </button>
+            </div>
           </div>
-          <button
-            type='button'
-            className='add-new-item'
-            onClick={addNewRecipeIngredient}
-          >
-            + Novo Ingrediente
-          </button>
-        </fieldset>
+          <div className='ingredient-prepare'>
+            <fieldset className='add-items'>
+              <legend>
+                <h2>Ingredientes</h2>
+              </legend>
 
-        <fieldset className='txt-div'>
-          <legend>
-            <h2> Modo de Preparo </h2>
-          </legend>
-          <textarea
-            name='M.D.P'
-            id='mdp'
-            placeholder='Tempere os filés com sal e pimenta do reino...'
-          ></textarea>
-        </fieldset>
+              <div>
+                {recipeIngredients.map((recipeIngredient, index) => {
+                  return (
+                    <div className='items'>
+                      <input
+                        name='ingredient'
+                        type='text'
+                        className='ingrediente'
+                        placeholder='Ingrediente'
+                        value={recipeIngredient.ingredient}
+                        onChange={(e) => {
+                          setRecipeIngredientValue(
+                            index,
+                            'ingredient',
+                            e.target.value
+                          );
+                        }}
+                      />
+                      <input
+                        name='amount'
+                        type='amount'
+                        className='qtd'
+                        placeholder='Qtd'
+                        value={recipeIngredient.amount}
+                        onChange={(e) =>
+                          setRecipeIngredientValue(
+                            index,
+                            'amount',
+                            e.target.value
+                          )
+                        }
+                      />
+                      <input
+                        name='measure'
+                        placeholder='(g)'
+                        className='g'
+                        type='measure'
+                        value={recipeIngredient.measure}
+                        onChange={(e) =>
+                          setRecipeIngredientValue(
+                            index,
+                            'measure',
+                            e.target.value
+                          )
+                        }
+                      />
+                      <button
+                        type='button'
+                        className='remove-item'
+                        onClick={() => removeRecipeIngredient(index)}
+                      >
+                        {' '}
+                        -
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
+              <button
+                type='button'
+                className='add-new-item'
+                onClick={addNewRecipeIngredient}
+              >
+                + Novo Ingrediente
+              </button>
+            </fieldset>
 
-        <footer>
-          {' '}
-          <button> Finalizar! </button>{' '}
-        </footer>
+            <fieldset className='txt-div'>
+              <legend>
+                <h2> Modo de Preparo </h2>
+              </legend>
+              <textarea
+                name='prepareMethod'
+                id='prepareMethod'
+                placeholder='Tempere os filés com sal e pimenta do reino...'
+              ></textarea>
+            </fieldset>
+          </div>
+
+          <fieldset className='recipe-images'>
+            <div className='images-container'>
+              {previewImages.map((image) => {
+                return <img key={image} src={image} alt={recipeName} />;
+              })}
+
+              <label htmlFor='image[]' className='new-image'>
+                <FiPlus size={25} color='#00af54' />
+              </label>
+            </div>
+            <div className='file-upload'>
+              <input
+                className='btn-img'
+                type='file'
+                id='image[]'
+                multiple
+                onChange={handleSelectImages}
+              />
+            </div>
+          </fieldset>
+
+          <footer>
+            {' '}
+            <button> Finalizar! </button>{' '}
+          </footer>
+        </form>
       </div>
     </div>
   );

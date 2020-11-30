@@ -24,24 +24,28 @@ const Register: React.FC = () => {
 
     //verificar senha!!
 
-    const data = new FormData();
+    if (password === repassword) {
+      const data = new FormData();
 
-    data.append('firstName', firstName);
-    data.append('lastName', lastName);
-    data.append('email', email);
-    data.append('password', password);
-    image.forEach((image) => {
-      data.append('image', image);
-    });
-    console.log({
-      firstName,
-      lastName,
-      email,
-      password,
-      image,
-    });
+      data.append('firstName', firstName);
+      data.append('lastName', lastName);
+      data.append('email', email);
+      data.append('password', password);
+      image.forEach((image) => {
+        data.append('image', image);
+      });
+      console.log({
+        firstName,
+        lastName,
+        email,
+        password,
+        image,
+      });
 
-    context.CreateUser(data);
+      context.CreateUser(data);
+    } else {
+      alert('As senhas precisam ser iguais');
+    }
   }
 
   function handleSelectImage(e: ChangeEvent<HTMLInputElement>) {
@@ -119,7 +123,7 @@ const Register: React.FC = () => {
             />
             <div className='file-upload'>
               <Input
-                className="btn-img"
+                className='btn-img'
                 type='file'
                 label='Avatar'
                 name='image'

@@ -1,0 +1,32 @@
+.select-block {
+  position: relative;
+}
+.select-block + .select-block {
+  margin-left: 1.4rem;
+}
+
+.select-block label {
+  font-size: 1.4rem;
+}
+
+.select-block select {
+  width: 100%;
+  height: 2.8rem;
+  outline: none;
+  border: 2px solid var(--color-text-hoover);
+  padding-left: 1rem;
+  font: 1.6rem Archivo;
+  font-style: italic;
+  margin: 5px;
+}
+
+.select-block:focus-within::after {
+  width: calc(100% - 3.2rem);
+  height: 2px;
+  content: '';
+  background: var(--color-primary-light);
+  position: absolute;
+  left: 1.6rem;
+  right: 1.6rem;
+  bottom: 0;
+}
