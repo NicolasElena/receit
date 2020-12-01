@@ -22,8 +22,6 @@ const Register: React.FC = () => {
   async function handleCreateUser(e: FormEvent) {
     e.preventDefault();
 
-    //verificar senha!!
-
     if (password === repassword) {
       const data = new FormData();
 

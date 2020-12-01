@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useState } from 'react';
 import Input from '../../Components/Input';
 
 import PageHeader from '../../Components/PageHeader';
@@ -7,14 +7,19 @@ import { FiPlus } from 'react-icons/fi';
 
 import './styles.css';
 import Select from '../../Components/Select';
+import { useAuth } from '../../Context/auth';
+import history from '../../history';
 
 function NewRecipe() {
+  const { user, CreateRecipe } = useAuth();
+
   const [recipeName, setRecipeName] = useState('');
+  const [prepareMethod, setPrepareMethod] = useState('');
   const [recipeIngredients, setRecipeIngredients] = useState([
     {
       ingredient: '',
-      amount: '',
       measure: '',
+      amount: '',
     },
   ]);
   const [categories, setCategories] = useState([
@@ -24,6 +29,37 @@ function NewRecipe() {
   ]);
   const [images, setImages] = useState<File[]>([]);
   const [previewImages, setPreviewImages] = useState<string[]>([]);
+
+  async function handleCreateRecipe(e: FormEvent) {
+    e.preventDefault();
+
+    //validação caso necessário
+    let tempUserId;
+    if (user) {
+      tempUserId = {
+        id: user.id,
+      };
+    }
+
+    const data = new FormData();
+
+    data.append('name', recipeName);
+    data.append('user', JSON.stringify(tempUserId));
+    data.append('prepare_method', prepareMethod);
+    recipeIngredients.forEach((recipeIngredient) => {
+      const temp = JSON.stringify(recipeIngredient);
+      data.append('recipeIngredient', temp);
+    });
+    categories.forEach((category) => {
+      const temp = JSON.stringify(category);
+      data.append('categories', temp);
+    });
+    images.forEach((image) => {
+      data.append('images', image);
+    });
+
+    CreateRecipe(data);
+  }
 
   function addNewRecipeIngredient() {
     setRecipeIngredients([
@@ -100,9 +136,6 @@ function NewRecipe() {
   }
 
   return (
-    // Criar componente do input e fazer botão "add-new-item" adicionar sua função!
-    //o botão deve criar um novo input -> item
-
     <div id='page-newRecipe' className='container'>
       <PageHeader />
 
@@ -111,7 +144,7 @@ function NewRecipe() {
           {' '}
           <h2> Cadastrar Receita </h2>{' '}
         </header>
-        <form>
+        <form onSubmit={handleCreateRecipe}>
           <div className='name-categories'>
             <input
               name='recipeName'
@@ -238,6 +271,7 @@ function NewRecipe() {
                 name='prepareMethod'
                 id='prepareMethod'
                 placeholder='Tempere os filés com sal e pimenta do reino...'
+                onChange={(e) => setPrepareMethod(e.target.value)}
               ></textarea>
             </fieldset>
           </div>
@@ -265,7 +299,7 @@ function NewRecipe() {
 
           <footer>
             {' '}
-            <button> Finalizar! </button>{' '}
+            <button type='submit'> Finalizar! </button>{' '}
           </footer>
         </form>
       </div>

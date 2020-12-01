@@ -4,25 +4,25 @@ import api from '../services/api';
 
 interface AuthContextData {
   signed: boolean;
-  user: object | null;
+  user: User | null;
   Login(email: String, password: String): Promise<void>;
   Logout(): void;
   CreateUser(userData: FormData): Promise<void>;
+  CreateRecipe(recipeData: FormData): Promise<void>;
 }
 
-interface newUser {
+interface User {
+  id: number;
   firstName: string;
   lastName: string;
-  password: string;
   email: string;
-  image?: File[];
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
   //'estados globais(contexto)'
-  const [user, setUser] = useState<object | null>(null);
+  const [user, setUser] = useState<User | null>(null);
 
   //useEfect para buscar se existe um usuário E um token no local storage
   useEffect(() => {
@@ -78,9 +78,25 @@ export const AuthProvider: React.FC = ({ children }) => {
     history.push('/login');
   }
 
+  async function CreateRecipe(recipeData: FormData) {
+    console.log(recipeData);
+
+    await api.post('/recipe', recipeData);
+
+    alert('Receita Cadastrada');
+    history.push('/');
+  }
+
   return (
     <AuthContext.Provider
-      value={{ signed: Boolean(user), user, Login, Logout, CreateUser }}
+      value={{
+        signed: Boolean(user),
+        user,
+        Login,
+        Logout,
+        CreateUser,
+        CreateRecipe,
+      }}
     >
       {children}
     </AuthContext.Provider>
