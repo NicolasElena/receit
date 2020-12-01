@@ -20,12 +20,7 @@ function Receitas() {
       <PageHeader />
 
       <div className='page-content'>
-        <div className='recipe-search'>
-          <h2>Receitas</h2>
-          <input type='search' placeholder='Search' />
-          <button>Categorias</button>
-        </div>
-
+        <h1>Receitas</h1>
         <div className='recipes'>
           {recipes.map((recipe) => {
             return <RecipeItem key={recipe.id} recipe={recipe} />;

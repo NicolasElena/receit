@@ -22,8 +22,8 @@ const RecipeItem: React.FC<RecipeProps> = ({ recipe }) => {
       </div>
 
       <h3>{recipe.name} </h3>
-      <div className='recipe-things'>
-        {recipe.categories.map((category) => {
+      <div className='recipe-categories'>
+        {recipe.categories.slice(0, 2).map((category) => {
           return (
             <div key={category.name} className='recipe-category'>
               {' '}
@@ -31,28 +31,32 @@ const RecipeItem: React.FC<RecipeProps> = ({ recipe }) => {
             </div>
           );
         })}
-        {recipe.ingredients.slice(0, 2).map((ingredient) => {
-          return (
-            <div key={ingredient.ingredient} className='recipe-ingredients'>
-              -{ingredient.ingredient}
-            </div>
-          );
-        })}
       </div>
-      <footer>
-        <button className='cook'>
-          <img src={cookImg} alt='cook' />
-          {recipe.user}
-        </button>
-        <button className='Fork'>
-          <Link to={`/recipes/${recipe.id}`}>
-            <img src={forkImg} alt='Fork' />
-          </Link>
-        </button>
-        <button>
-          <img src={likeImg} alt='Like' />
-        </button>
-      </footer>
+      <div className='recipe-ingredients-user'>
+        <div className='recipe-ingredients'>
+          {recipe.ingredients.slice(0, 3).map((ingredient) => {
+            return (
+              <div key={ingredient.ingredient} className='recipe-ingredient'>
+                -{ingredient.ingredient}
+              </div>
+            );
+          })}
+        </div>
+        <div className='recipe-user'>
+          <button className='cook'>
+            <img src={cookImg} alt='cook' />
+            {recipe.user}
+          </button>
+          <button className='Fork'>
+            <Link to={`/recipes/${recipe.id}`}>
+              <img src={forkImg} alt='Fork' />
+            </Link>
+          </button>
+          <button>
+            <img src={likeImg} alt='Like' />
+          </button>
+        </div>
+      </div>
     </article>
   );
 };

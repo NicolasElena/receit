@@ -1,6 +1,6 @@
 .recipe-item {
-  width: 26rem;
-  height: 40rem;
+  width: 25rem;
+  height: 38rem;
   margin-bottom: 2rem;
   margin-right: 2rem;
   background: var(--color-background-logo);
@@ -8,35 +8,49 @@
 }
 
 .recipe-image img {
-  width: 26rem;
+  width: 25rem;
   height: 16rem;
   border-radius: 20px;
   text-align: center;
 }
 
 .recipe-item h3 {
+  text-align: center;
   padding-left: 1rem;
 }
 
-.recipe-things {
+.recipe-categories {
   padding-left: 1.5rem;
   color: var(--color-txt-secondary);
   font-size: 1.4rem;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .recipe-category {
-  display: flex;
-  justify-content: center;
+  display: inline;
   margin-bottom: 1rem;
 }
 
-.recipe-ingredients {
+.recipe-ingredients-user {
   display: flex;
+  justify-content: space-between;
+}
+
+.recipe-ingredients {
+  padding-left: 1.5rem;
+  color: var(--color-txt-secondary);
+  font-size: 1.4rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.recipe-ingredient {
   justify-content: right;
   margin-bottom: 1rem;
 }
 
-.recipe-item footer {
+.recipe-user {
   margin-top: 5rem;
   display: grid;
   justify-content: flex-end;
@@ -46,7 +60,7 @@
     'buttons buttons';
 }
 
-.recipe-item footer button {
+.recipe-user button {
   width: 4.5rem;
   margin-right: 1rem;
   margin-bottom: 1rem;
@@ -58,10 +72,10 @@
   border-color: var(--color-txt-secondary);
 }
 
-.recipe-item footer .cook {
-  width: 10rem;
+.recipe-user .cook {
+  width: 10.5rem;
   height: 3.5rem;
-  padding: 0.6rem;
+  padding-top: 0.6rem;
   display: flex;
   justify-items: center;
   grid-area: cook;
@@ -70,5 +84,5 @@
   border-style: none;
   border-radius: 3rem;
 
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 }
