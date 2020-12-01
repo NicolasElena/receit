@@ -5,8 +5,6 @@ import PageHeader from '../../Components/PageHeader';
 import api from '../../services/api';
 import { Recipe } from '../../@types/recipes';
 import { useParams } from 'react-router-dom';
-import Input from '../../Components/Input';
-import Select from '../../Components/Select';
 
 interface RecipeParams {
   id: string;
@@ -15,6 +13,7 @@ interface RecipeParams {
 function FullRecipe() {
   const params = useParams<RecipeParams>();
   const [recipe, setRecipe] = useState<Recipe>();
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   useEffect(() => {
     api.get(`/recipes/${params.id}`).then((response) => {
@@ -42,6 +41,25 @@ function FullRecipe() {
               })}
             </div>
           </div>
+          <fieldset className='image-container'>
+            <img src={recipe.images[activeImageIndex].url} alt={recipe.name} />
+            <div className='images'>
+              {recipe.images.map((img, index) => {
+                return (
+                  <button
+                    key={img.url}
+                    className={activeImageIndex === index ? 'active' : ''}
+                    type='button'
+                    onClick={() => {
+                      setActiveImageIndex(index);
+                    }}
+                  >
+                    <img src={img.url} alt={recipe.name} />
+                  </button>
+                );
+              })}
+            </div>
+          </fieldset>
           <div className='ingredient-prepare'>
             <fieldset className='add-items'>
               <legend>
@@ -49,7 +67,7 @@ function FullRecipe() {
               </legend>
 
               <div>
-                {recipe.ingredients.map((recipeIngredient, index) => {
+                {recipe.ingredients.map((recipeIngredient) => {
                   return (
                     <div className='items'>
                       <input

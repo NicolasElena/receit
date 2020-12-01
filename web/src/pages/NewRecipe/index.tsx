@@ -8,7 +8,6 @@ import { FiPlus } from 'react-icons/fi';
 import './styles.css';
 import Select from '../../Components/Select';
 import { useAuth } from '../../Context/auth';
-import history from '../../history';
 
 function NewRecipe() {
   const { user, CreateRecipe } = useAuth();

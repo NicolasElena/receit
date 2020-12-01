@@ -11,7 +11,8 @@ const NoAuthRoutes: React.FC = () => {
   return (
     <Switch>
       <Route path='/' exact component={Main} />
-      <Route path='/receitas' component={Receitas} />
+      <Route path='/receitas' exact component={Receitas} />
+      <Route path='/receitas/user/:id' component={Receitas} />
       <Route path='/recipes/:id' component={FullRecipe} />
       <Route path='/categorias' component={Categorias} />
       <Route path='/newRecipe' component={NewRecipe} />

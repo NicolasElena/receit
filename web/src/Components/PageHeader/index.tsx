@@ -7,13 +7,13 @@ import logoImg from '../../assets/Images/logo-min.png';
 import { useAuth } from '../../Context/auth';
 
 function PageHeader() {
-  const { signed, Logout } = useAuth();
+  const { signed, Logout, user } = useAuth();
 
   function handleLogout() {
     Logout();
   }
 
-  if (signed) {
+  if (signed && user) {
     return (
       <header className='page-header'>
         <div className='nav'>
@@ -25,11 +25,9 @@ function PageHeader() {
 
           <div className='coisas'>
             <Link to='/receitas'>Receitas</Link>
-            <Link to='/receitas'>Minhas Receitas</Link>
-            <Link to='/categorias'>Categorias</Link>
+            <Link to={`/receitas/user/${user.id}`}>Minhas Receitas</Link>
+            <Link to='/newRecipe'>Nova Receita</Link>
           </div>
-
-          <input type='text' placeholder='Procure aqui sua receita' />
 
           <div className='login'>
             <button onClick={handleLogout}>Logout</button>
@@ -49,10 +47,7 @@ function PageHeader() {
 
         <div className='coisas'>
           <Link to='/receitas'>Receitas</Link>
-          <Link to='/categorias'>Categorias</Link>
         </div>
-
-        <input type='text' placeholder='Procure aqui sua receita' />
 
         <div className='login'>
           <Link to='/register'>
