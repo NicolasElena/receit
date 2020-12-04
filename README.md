@@ -14,7 +14,8 @@ Esse projeto foi desenvolvido utilizando as seguintes tecnologias:
 
 * [Typescript][typescript-url]      
 * [React][react-url]        
-* [Express][express-url] 
+* [Express][express-url]
+* [Postgres][postgres-url]
 * [TyeORM][typeorm-url]
 
 ## :pencil: Funcionalidades
