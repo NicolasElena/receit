@@ -19,4 +19,4 @@ app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 
 app.use(errorHandler);
 
-app.listen(3333, () => console.log('running on port 3333'));
+app.listen(process.env.PORT || 3333, () => console.log('running on port 3333'));
