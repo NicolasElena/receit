@@ -18,13 +18,8 @@
   "scripts": {
     "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
-<<<<<<< HEAD
-    "dbinit": "ts-node ./node_modules/typeorm/cli.js migration:generate -n CreateDatabase",
-    "start": "node dist/index.ts"
-=======
     "start": "ts-node src/index.ts",
     "dbinit": "ts-node ./node_modules/typeorm/cli.js migration:generate -n CreateDatabase"
->>>>>>> parent of 4e14d5a... heroku  configs
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
