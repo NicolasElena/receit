@@ -1,12 +1,14 @@
-## RECEIT - TCC
+# RECEIT - 
 
 <p align="center">	
    <img src="./.github/receit.PNG" alt="Proffy" width="620"/>
 </p>
 <p align="center">	
   Projeto desenvolvido como Trabalho de Conclusão de Curso na Fatec Jundiaí
-</p>
-
+  </p><p align="center">	
+ Um lugar para armazenar suas melhores receitas
+   </p>
+  
 ## :computer: Tecnologias
 Esse projeto foi desenvolvido utilizando as seguintes tecnologias:
 
@@ -16,7 +18,7 @@ Esse projeto foi desenvolvido utilizando as seguintes tecnologias:
 * [Express][express-url] 
 * [TyeORM][typeorm-url]
 
-## :rocket: Funcionalidades
+## :pencil: Funcionalidades
 
 * Uma livro de receitas digital para  organizar seus pratos favoritos.
 * Uma aplicação mobile para conectar alunos e professores.
@@ -66,11 +68,14 @@ Endereço da aplicação web: http://localhost:3000/
 ## 📓 Licença
 Esse projeto esta sobre [MIT license](./LICENSE).
 
+⭐️Feito com carinho por [Nicolas Elena][nick-profile-url] e [Matheus Rodrigues][matt-profile-url].⭐️ 
+
 <!-- VARS -->
 
 [express-url]: https://expressjs.com/
 [react-url]: https://reactjs.org/   
-[profile-url]: https://github.com/NicolasElena
+[nick-profile-url]: https://github.com/NicolasElena
+[matt-profile-url]: https://github.com/Th3Matts
 [node-url]: https://nodejs.org/en
 [yarn-url]: https://classic.yarnpkg.com/
 [npm-url]:  https://www.npmjs.com/
