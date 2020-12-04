@@ -8,6 +8,12 @@ interface AuthContextData {
   Login(email: String, password: String): Promise<void>;
   Logout(): void;
   CreateUser(userData: FormData): Promise<void>;
+  UpdateUser(
+    firstName: String,
+    lastName: String,
+    email: String,
+    password?: String
+  ): Promise<void>;
   CreateRecipe(recipeData: FormData): Promise<void>;
 }
 
@@ -78,6 +84,25 @@ export const AuthProvider: React.FC = ({ children }) => {
     history.push('/login');
   }
 
+  async function UpdateUser(
+    firstName: String,
+    lastName: String,
+    email: String,
+    password?: String
+  ) {
+    console.log(firstName, lastName, email);
+
+    const response = await api.post(`/user/update/${user?.id}`, {
+      firstName,
+      lastName,
+      email,
+    });
+
+    alert(response.data.message);
+
+    history.push('/');
+  }
+
   async function CreateRecipe(recipeData: FormData) {
     console.log(recipeData);
 
@@ -96,6 +121,7 @@ export const AuthProvider: React.FC = ({ children }) => {
         Logout,
         CreateUser,
         CreateRecipe,
+        UpdateUser,
       }}
     >
       {children}

@@ -67,7 +67,7 @@ const Register: React.FC = () => {
         </div>
         <div className='txt-cadastro'>
           <strong>Estamos empolgados para compartilhar suas receitas!</strong>
-          <p> O primeiro passo é prrencher este formulario de inscrição </p>
+          <p> O primeiro passo é preencher este formulário de inscrição </p>
         </div>
       </header>
       <main>
@@ -128,10 +128,10 @@ const Register: React.FC = () => {
                 onChange={handleSelectImage}
               />
             </div>
+            <footer>
+              <button type='submit'> Salvar Cadastro</button>
+            </footer>
           </fieldset>
-          <footer>
-            <button type='submit'> Salvar Cadastro</button>
-          </footer>
         </form>
       </main>
     </div>

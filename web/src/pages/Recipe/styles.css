@@ -3,7 +3,7 @@
   height: 100vh;
 }
 
-.page-content {
+#page-recipe .page-content {
   background: var(--color-box-base);
   width: 98.5%;
   height: 87vh;
@@ -62,6 +62,10 @@
   padding-left: 8rem;
   justify-self: center;
   align-items: center;
+}
+
+.ingredient-prepare {
+  margin-bottom: 30px;
 }
 
 @media (max-width: 1400px) {

@@ -3,6 +3,20 @@
   height: 100vh;
 }
 
+#page-recipe .page-tag {
+  width: 100rem;
+  background-color: var(--color-text-hoover);
+  border-radius: 0.8rem;
+  padding: 0 6.4rem;
+  margin-top: 10px;
+  margin-bottom: -20px;
+  margin-left: 0.4vw;
+  justify-content: center;
+  align-items: center;
+}
+#page-recipe .page-tag h1 {
+  text-align: center;
+}
 .page-content {
   background: var(--color-box-base);
   border-radius: 0.8rem;

@@ -72,17 +72,22 @@
   border-color: var(--color-txt-secondary);
 }
 
-.recipe-user .cook {
-  width: 10.5rem;
-  height: 3.5rem;
-  padding-top: 0.6rem;
+footer {
   display: flex;
-  justify-items: center;
-  grid-area: cook;
+  flex-direction: column;
+}
+
+.cook {
+  flex: 1;
+  height: 3.5rem;
   background: var(--color-button-cook);
   outline: none;
   border-style: none;
   border-radius: 3rem;
+  font-size: 1.7rem;
+  margin-top: 3.2rem;
+}
 
-  font-size: 1.4rem;
+.cook:hover {
+  background: var(--color-button-cook-hover);
 }

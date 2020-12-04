@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import './styles.css';
 
+import backImg from '../../assets/Images/Back.png';
 import logoImg from '../../assets/Images/logo-min.png';
 import './styles.css';
 
@@ -54,6 +55,11 @@ const Login: React.FC = () => {
             <button className='submit-button' type='submit'>
               Entrar
             </button>
+            <Link to='/'>
+              <button>
+                <img src={backImg} alt='Voltar' />
+              </button>
+            </Link>
           </div>
         </form>
       </div>

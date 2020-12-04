@@ -20,7 +20,7 @@ const Receitas: React.FC = () => {
 
     if (params.id) {
       api.get(`/user/recipes/${params.id}`).then((response) => {
-        setRecipes(response.data.recipes);
+        setRecipes(response.data);
       });
     } else {
       api.get('/recipes').then((response) => {
@@ -32,9 +32,10 @@ const Receitas: React.FC = () => {
   return (
     <div id='page-recipe' className='container'>
       <PageHeader />
-
-      <div className='page-content'>
+      <div className='page-tag'>
         <h1>Receitas</h1>
+      </div>
+      <div className='page-content'>
         <div className='recipes'>
           {recipes.map((recipe) => {
             return <RecipeItem key={recipe.id} recipe={recipe} />;

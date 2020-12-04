@@ -8,13 +8,27 @@ import forkImg from '../../assets/Images/Fork.png';
 import likeImg from '../../assets/Images/Like.png';
 import cookImg from '../../assets/Images/Cook.png';
 import { Recipe } from '../../@types/recipes';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import history from '../../history';
 
 interface RecipeProps {
   recipe: Recipe;
 }
 
+interface UserParams {
+  id: string;
+}
+
 const RecipeItem: React.FC<RecipeProps> = ({ recipe }) => {
+  const params = useParams<UserParams>();
+  function linkUserRecipes(recipeUserID: string) {
+    if (recipeUserID === params.id) {
+      history.push(`/user/${params.id}`);
+    } else {
+      history.push(`receitas/user/${recipeUserID}`);
+    }
+  }
+
   return (
     <article className='recipe-item'>
       <div className='recipe-image'>
@@ -43,10 +57,6 @@ const RecipeItem: React.FC<RecipeProps> = ({ recipe }) => {
           })}
         </div>
         <div className='recipe-user'>
-          <button className='cook'>
-            <img src={cookImg} alt='cook' />
-            {recipe.user}
-          </button>
           <button className='Fork'>
             <Link to={`/recipes/${recipe.id}`}>
               <img src={forkImg} alt='Fork' />
@@ -57,6 +67,15 @@ const RecipeItem: React.FC<RecipeProps> = ({ recipe }) => {
           </button>
         </div>
       </div>
+      <footer>
+        <button
+          className='cook'
+          onClick={() => linkUserRecipes(recipe.user_id.toString())}
+        >
+          <img src={cookImg} alt='cook' />
+          {recipe.user}
+        </button>
+      </footer>
     </article>
   );
 };

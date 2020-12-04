@@ -34,6 +34,16 @@
   margin-right: 5rem;
 }
 
+.nav .logout-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+.nav .logout-block button {
+  margin-right: 10px;
+}
+
 .nav img {
   width: 36px;
   height: 72px;

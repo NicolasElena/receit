@@ -5,12 +5,16 @@ import './styles.css';
 
 import logoImg from '../../assets/Images/logo-min.png';
 import { useAuth } from '../../Context/auth';
+import history from '../../history';
 
 function PageHeader() {
   const { signed, Logout, user } = useAuth();
 
   function handleLogout() {
     Logout();
+  }
+  function handleChef() {
+    history.push(`/user/${user?.id}`);
   }
 
   if (signed && user) {
@@ -29,7 +33,8 @@ function PageHeader() {
             <Link to='/newRecipe'>Nova Receita</Link>
           </div>
 
-          <div className='login'>
+          <div className='logout-block'>
+            <button onClick={handleChef}>Chef</button>
             <button onClick={handleLogout}>Logout</button>
           </div>
         </div>

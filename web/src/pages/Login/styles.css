@@ -78,6 +78,8 @@
   transition: background-color 0.2s;
   outline: 0;
 
+  margin-top: 10px;
+
   display: flex;
   align-items: center;
   justify-content: center;

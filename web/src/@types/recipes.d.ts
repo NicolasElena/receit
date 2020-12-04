@@ -1,6 +1,7 @@
 export interface Recipe {
   id: number;
   user: string;
+  user_id: number;
   name: string;
   prepare_method: string;
   public_flag: boolean;
@@ -21,4 +22,15 @@ export interface Recipe {
       url: string;
     }
   ];
+}
+
+export interface User {
+  userId: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  image: {
+    id: number;
+    url: string;
+  };
 }

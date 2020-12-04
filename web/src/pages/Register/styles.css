@@ -101,7 +101,7 @@
   padding: 1rem 2.4rem;
   background: var(--color-box-footer);
   border-top: 1px solid var(--color-line-in-white);
-  margin-top: 6.4rem;
+  margin-top: 3rem;
 }
 
 #page-register main footer button {
@@ -118,15 +118,14 @@
   justify-content: center;
   text-decoration: none;
   transition: background-color 0.2s;
-  margin-top: 3.2rem;
   outline: none;
 }
 
-input[type=file]::-webkit-file-upload-button {
+input[type='file']::-webkit-file-upload-button {
   border: none;
   cursor: pointer;
-  padding: .2em .4em;
-  border-radius: .2em;
+  padding: 0.2em 0.4em;
+  border-radius: 0.2em;
   color: var(--color-button-text);
   background-color: #f13030;
   transition: 2s;
@@ -134,11 +133,10 @@ input[type=file]::-webkit-file-upload-button {
   font-size: 10pt;
 }
 
-input[type=file]::-webkit-file-upload-button:hover {
+input[type='file']::-webkit-file-upload-button:hover {
   background-color: var(--color-primary-darker);
   border: none;
 }
- 
 
 @media (min-width: 700px) {
   #page-register {
