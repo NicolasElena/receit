@@ -41,9 +41,12 @@ $ cd Receit/server
 
 # Instale as dependências do projeto
 $ yarn install
+# ou
+$ npm i
 
 # Inicie a API
 $ yarn dev
+# ou
 $ npm run dev
 ```
 Endereço da API: http://localhost:3333/
@@ -56,10 +59,12 @@ $ cd Receit/web
 
 # Instale as dependências do projeto
 $ yarn install
+# ou
 $ npm i
 
 # Execute a aplicação web
 $ yarn start
+# ou
 $ npm run start
 ```
 Endereço da aplicação web: http://localhost:3000/
