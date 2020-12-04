@@ -20,7 +20,7 @@
     "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
     "dbinit": "ts-node ./node_modules/typeorm/cli.js migration:generate -n CreateDatabase",
-    "start": "ts-node src/index.ts"
+    "start": "node dist/index.ts"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
