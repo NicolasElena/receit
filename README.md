@@ -13,8 +13,7 @@
 Esse projeto foi desenvolvido utilizando as seguintes tecnologias:
 
 * [Typescript][typescript-url]      
-* [React][react-url]      
-* [Expo][expo-url]      
+* [React][react-url]        
 * [Express][express-url] 
 * [TyeORM][typeorm-url]
 
