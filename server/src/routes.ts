@@ -17,20 +17,25 @@ const upload = multer(uploadConfig);
 //rotas users
 
 routes.post('/user', upload.single('image'), UserController.create);
-routes.get('/user/recipes/:id', UserController.showUserRecipes);
-routes.get('/users/:id', authMiddleware, UserController.show);
+routes.get('/user/:id', UserController.show);
+routes.post('/user/update/:id', authMiddleware, UserController.update);
 //routes.get('/users', UserController.index);
 routes.get('/users', authMiddleware, UserController.index);
 
 //rotas recipes
 
-routes.post('/recipe', upload.array('images'), RecipeController.create);
+routes.post(
+  '/recipe',
+  // authMiddleware,
+  upload.array('images'),
+  RecipeController.create
+);
 routes.get('/recipes/:id', RecipeController.show);
-routes.get('/recipes/user/:id', RecipeController.indexUserRecipes);
+routes.delete('/recipes/:id', RecipeController.deleteRecipe);
 routes.get('/recipes', RecipeController.index);
+routes.get('/user/recipes/:id', RecipeController.indexUserRecipes);
 
 // rota autenticação
-
-routes.post('/auth', AuthController.authenticate);
+routes.post('/login', AuthController.authenticate);
 
 export default routes;

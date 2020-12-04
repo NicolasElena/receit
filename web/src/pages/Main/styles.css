@@ -1,0 +1,25 @@
+#page-content {
+  width: 100vw;
+  height: 100vh;
+}
+
+main {
+  background: var(--color-box-base);
+  width: 98.5%;
+  height: 87%;
+  border-radius: 0.8rem;
+  padding: 0 6.4rem;
+  margin-left: 1rem;
+  margin-top: 2rem;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media (min-width: 700px) {
+  #page-content {
+    max-width: 100%;
+  }
+}

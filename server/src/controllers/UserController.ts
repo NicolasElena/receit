@@ -51,6 +51,31 @@ export default {
 
     return response.status(201).json(user);
   },
+  async update(request: Request, response: Response) {
+    const { id } = request.params;
+    const { firstName, lastName, email, password } = request.body;
+
+    console.log(firstName, lastName, email, password);
+
+    const usersRepository = getRepository(User);
+
+    try {
+      const userUpdate = await usersRepository.findOne(id);
+
+      console.log(userUpdate);
+
+      usersRepository.save({
+        ...userUpdate,
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+      });
+
+      return response.json({ message: 'user atualizado', user: userUpdate });
+    } catch {
+      return response.json({ message: 'falha ao atualizar' });
+    }
+  },
   async index(request: Request, response: Response) {
     const usersRepository = getRepository(User);
 
@@ -64,13 +89,16 @@ export default {
   },
   async show(request: Request, response: Response) {
     const { id } = request.params;
+
     const usersRepository = getRepository(User);
-
-    const user = await usersRepository.findOneOrFail(id, {
-      relations: ['recipes', 'image'],
-    });
-
-    return response.json(userView.render(user));
+    try {
+      const user = await usersRepository.findOneOrFail(id, {
+        relations: ['recipes', 'image'],
+      });
+      return response.json(userView.render(user));
+    } catch {
+      return response.json({ message: 'Usuário inválido' });
+    }
   },
   async showUserRecipes(request: Request, response: Response) {
     const { id } = request.params;

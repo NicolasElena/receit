@@ -3,6 +3,7 @@ import { getRepository } from 'typeorm';
 import * as Yup from 'yup';
 
 import { Recipe } from '../model/Recipe';
+import { User } from '../model/User';
 import recipeView from '../view/Recipe_view';
 
 export default {
@@ -119,7 +120,6 @@ export default {
 
     return response.json(recipeView.renderMany(recipes));
   },
-
   async show(request: Request, response: Response) {
     const { id } = request.params;
     const recipesRepository = getRepository(Recipe);
@@ -133,7 +133,6 @@ export default {
 
     return response.json(recipeView.render(recipe));
   },
-
   async indexUserRecipes(request: Request, response: Response) {
     const { id } = request.params;
     const recipesRepository = getRepository(Recipe);
@@ -142,10 +141,48 @@ export default {
     console.log(recipesRepository);
 
     const recipe = await recipesRepository.find({
-      relations: ['recipeIngredient', 'categories', 'images'],
+      relations: ['recipeIngredient', 'categories', 'images', 'user'],
       where: { user: { id: id } },
     });
 
     return response.json(recipeView.renderMany(recipe));
+  },
+  async deleteRecipe(request: Request, response: Response) {
+    const { id } = request.params;
+    const recipesRepository = getRepository(Recipe);
+
+    const res = await recipesRepository.delete(id);
+    console.log(res);
+
+    if (res.affected) {
+      return response.json({ message: 'receita apagada' });
+    }
+
+    return response.json({ message: 'err' });
+  },
+  async updateRecipe(request: Request, response: Response) {
+    const { id } = request.params;
+    const { firstName, lastName, email, password } = request.body;
+
+    console.log(firstName, lastName, email, password);
+
+    const usersRepository = getRepository(User);
+
+    try {
+      const userUpdate = await usersRepository.findOne(id);
+
+      console.log(userUpdate);
+
+      usersRepository.save({
+        ...userUpdate,
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+      });
+
+      return response.json({ message: 'user atualizado', user: userUpdate });
+    } catch {
+      return response.json({ message: 'falha ao atualizar' });
+    }
   },
 };

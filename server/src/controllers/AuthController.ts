@@ -25,7 +25,16 @@ export default {
 
     // token jwt para validação, segundo parâmetro arquivo/info crítica
 
-    const token = jwt.sign({ id: user.id }, 'receit', { expiresIn: '1d' });
+    const token = jwt.sign(
+      {
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+      },
+      'receit',
+      { expiresIn: '1d' }
+    );
 
     return response.json({
       user: {

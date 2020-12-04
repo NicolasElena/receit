@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
-
-// import dsktpBG from './assets/Images/Desktop_bg.svg'
-import Login from './pages/Login';
+import React from 'react';
 
 import './assets/Styles/global.css';
+import Routes from './routes';
+
+import { AuthProvider } from './Context/auth';
 
 function App() {
-  return <Login />;
+  return (
+    <AuthProvider>
+      <Routes />
+    </AuthProvider>
+  );
 }
 
 export default App;

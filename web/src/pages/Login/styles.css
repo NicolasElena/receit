@@ -1,16 +1,15 @@
-.login {
-  flex: 0;
+.page-login {
   width: 414px;
   height: 584px;
-  background-color: var(--color-box-base);
+  background: var(--color-box-base);
   border-radius: 5rem;
-  padding-top: 3rem;
 }
 
 .logo-container {
-  width: 105px;
-  height: 105px;
+  width: 100px;
+  height: 104px;
   padding-top: 1.5rem;
+  margin-top: 5rem;
   margin-left: 16rem;
   text-align: center;
   background: var(--color-background-logo);
@@ -62,24 +61,32 @@
   color: var(--color-txt-secondary);
 }
 
-.submit-button {
-  margin-top: 15rem;
-  padding: 0 14.2rem;
+.submit-container {
+  margin-top: 13rem;
+  padding: 0 14.3rem;
 }
 
-.submit-button button {
+.submit-container button {
   width: 15rem;
-  height: 5rem;
+  height: 4.5rem;
   color: var(--color-button-text);
-  background-color: var(--color-button-primary);
+  background-color: var(--color-primary);
   border: 0;
   cursor: pointer;
   border-radius: 5rem;
   font: 700 1.6rem Archivo;
   transition: background-color 0.2s;
   outline: 0;
+
+  margin-top: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-decoration: none;
 }
 
-.submit-button button:hover {
-  background: var(--color-button-secondary);
+.submit-container a:hover {
+  background: var(--color-primary-darker);
 }

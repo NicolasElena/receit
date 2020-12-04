@@ -6,7 +6,9 @@ import recipeImage from './recipe_image_view';
 export default {
   render(recipe: Recipe) {
     return {
-      user: recipe.user,
+      id: recipe.id,
+      user_id: recipe.user.id,
+      user: recipe.user.firstName,
       name: recipe.name,
       prepare_method: recipe.prepare_method,
       public_flag: recipe.public_flag,
@@ -18,8 +20,9 @@ export default {
   renderMany(recipe: Recipe[]) {
     return recipe.map((recipe) => this.render(recipe));
   },
-  renderNoUser(recipe: Recipe) {
+  renderOneUser(recipe: Recipe) {
     return {
+      id: recipe.id,
       name: recipe.name,
       prepare_method: recipe.prepare_method,
       public_flag: recipe.public_flag,
@@ -28,7 +31,7 @@ export default {
       images: recipeImage.renderMany(recipe.images),
     };
   },
-  renderManyNoUser(recipe: Recipe[]) {
-    return recipe.map((recipe) => this.renderNoUser(recipe));
+  renderManyOneUser(recipe: Recipe[]) {
+    return recipe.map((recipe) => this.renderOneUser(recipe));
   },
 };

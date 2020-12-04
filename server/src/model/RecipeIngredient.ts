@@ -15,6 +15,8 @@ export class RecipeIngredient {
   @Column()
   public measure!: string;
 
-  @ManyToOne(() => Recipe, (recipe) => recipe.recipeIngredient)
+  @ManyToOne(() => Recipe, (recipe) => recipe.recipeIngredient, {
+    onDelete: 'CASCADE',
+  })
   public recipe!: Recipe;
 }

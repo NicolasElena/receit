@@ -1,0 +1,93 @@
+.recipe-item {
+  width: 25rem;
+  height: 38rem;
+  margin-bottom: 2rem;
+  margin-right: 2rem;
+  background: var(--color-background-logo);
+  border-radius: 1.5rem;
+}
+
+.recipe-image img {
+  width: 25rem;
+  height: 16rem;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.recipe-item h3 {
+  text-align: center;
+  padding-left: 1rem;
+}
+
+.recipe-categories {
+  padding-left: 1.5rem;
+  color: var(--color-txt-secondary);
+  font-size: 1.4rem;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.recipe-category {
+  display: inline;
+  margin-bottom: 1rem;
+}
+
+.recipe-ingredients-user {
+  display: flex;
+  justify-content: space-between;
+}
+
+.recipe-ingredients {
+  padding-left: 1.5rem;
+  color: var(--color-txt-secondary);
+  font-size: 1.4rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.recipe-ingredient {
+  justify-content: right;
+  margin-bottom: 1rem;
+}
+
+.recipe-user {
+  margin-top: 5rem;
+  display: grid;
+  justify-content: flex-end;
+  grid-template-columns: 0.3fr;
+  grid-template-areas:
+    'cook cook'
+    'buttons buttons';
+}
+
+.recipe-user button {
+  width: 4.5rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  padding-top: 0.5rem;
+  background: var(--color-background-logo);
+  outline: none;
+  border-style: solid;
+  border-radius: 1rem;
+  border-color: var(--color-txt-secondary);
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+}
+
+.cook {
+  flex: 1;
+  height: 3.5rem;
+  background: var(--color-button-cook);
+  outline: none;
+  border-style: none;
+  border-radius: 3rem;
+  font-size: 1.7rem;
+  margin-top: 3.2rem;
+}
+
+.cook:hover {
+  background: var(--color-button-cook-hover);
+}

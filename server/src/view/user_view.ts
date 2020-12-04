@@ -1,3 +1,4 @@
+import UserController from '../controllers/UserController';
 import { User } from '../model/User';
 import recipes from './recipe_view';
 import userImage from './user_image_view';
@@ -5,6 +6,7 @@ import userImage from './user_image_view';
 export default {
   render(user: User) {
     return {
+      userId: user.id,
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
@@ -19,7 +21,7 @@ export default {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
-      recipes: recipes.renderManyNoUser(user.recipes),
+      recipes: recipes.renderManyOneUser(user.recipes),
       image: userImage.render(user.image),
     };
   },

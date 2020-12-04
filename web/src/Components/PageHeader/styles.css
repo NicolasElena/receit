@@ -1,0 +1,83 @@
+.page-header {
+  padding: 0.5rem;
+  height: 10rem;
+  background: var(--color-box-base);
+  border-bottom-right-radius: 0.8rem;
+  border-bottom-left-radius: 0.8rem;
+}
+
+.nav {
+  padding-left: 3rem;
+  border-radius: 5rem;
+  display: grid;
+  grid-template-rows: 8rem 1fr;
+  grid-template-columns: 0.5fr 5fr 1fr;
+}
+
+.nav .coisas {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.nav .coisas a {
+  margin-right: 5rem;
+}
+
+.nav .login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav .login a {
+  margin-right: 5rem;
+}
+
+.nav .logout-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+.nav .logout-block button {
+  margin-right: 10px;
+}
+
+.nav img {
+  width: 36px;
+  height: 72px;
+  left: 10px;
+  top: 10px;
+}
+
+.nav a {
+  display: flex;
+  margin-right: 10rem;
+  color: var(--color-text-base);
+  font-size: 2.3rem;
+  font: 400 1.6 Archivo;
+  text-decoration: none;
+}
+
+.nav button {
+  width: 15rem;
+  height: 4.5rem;
+  color: var(--color-button-text);
+  background-color: var(--color-primary);
+  border: 0;
+  cursor: pointer;
+  border-radius: 5rem;
+  transition: background-color 0.3s;
+  outline: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-decoration: none;
+}
+
+.nav button:hover {
+  background: var(--color-primary-darker);
+}

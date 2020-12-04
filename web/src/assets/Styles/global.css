@@ -2,15 +2,20 @@
   font-size: 60%;
 
   --color-primary: #f13030;
+  --color-primary-darker: #b22727;
   --color-background-web: #f36c6c;
   --color-txt-secondary: #cf8989;
+  --color-text-hoover: #e5d1d1;
   --color-text-base: #512727;
   --color-button-primary: #00af54;
   --color-button-secondary: #009246;
   --color-line-in-white: #777777;
   --color-box-base: #f6f5f5;
   --color-button-text: #ffffff;
+  --color-button-cook: #e9e9e9;
+  --color-button-cook-hover: #c7aeae;
   --color-background-logo: #ffffff;
+  --color-reg-bg: #f0f0f7;
 }
 
 * {
@@ -48,10 +53,4 @@ textarea {
 .container {
   width: 90vw;
   max-width: 700px;
-}
-
-@media (min-width: 700px) {
-  :root {
-    font-size: 62.5%;
-  }
 }
