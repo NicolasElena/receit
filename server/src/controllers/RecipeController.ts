@@ -3,6 +3,7 @@ import { getRepository } from 'typeorm';
 import * as Yup from 'yup';
 
 import { Recipe } from '../model/Recipe';
+import { User } from '../model/User';
 import recipeView from '../view/Recipe_view';
 
 export default {
@@ -140,7 +141,7 @@ export default {
     console.log(recipesRepository);
 
     const recipe = await recipesRepository.find({
-      relations: ['recipeIngredient', 'categories', 'images'],
+      relations: ['recipeIngredient', 'categories', 'images', 'user'],
       where: { user: { id: id } },
     });
 
@@ -161,15 +162,27 @@ export default {
   },
   async updateRecipe(request: Request, response: Response) {
     const { id } = request.params;
-    const recipesRepository = getRepository(Recipe);
+    const { firstName, lastName, email, password } = request.body;
 
-    const res = await recipesRepository.delete(id);
-    console.log(res);
+    console.log(firstName, lastName, email, password);
 
-    if (res.affected) {
-      return response.json({ message: 'receita apagada' });
+    const usersRepository = getRepository(User);
+
+    try {
+      const userUpdate = await usersRepository.findOne(id);
+
+      console.log(userUpdate);
+
+      usersRepository.save({
+        ...userUpdate,
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+      });
+
+      return response.json({ message: 'user atualizado', user: userUpdate });
+    } catch {
+      return response.json({ message: 'falha ao atualizar' });
     }
-
-    return response.json({ message: 'err' });
   },
 };
