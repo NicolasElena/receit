@@ -16,12 +16,11 @@ Esse projeto foi desenvolvido utilizando as seguintes tecnologias:
 * [React][react-url]        
 * [Express][express-url]
 * [Postgres][postgres-url]
-* [TyeORM][typeorm-url]
+* [TypeORM][typeorm-url]
 
 ## :pencil: Funcionalidades
 
-* Uma livro de receitas digital para  organizar seus pratos favoritos.
-* Uma aplicação mobile para conectar alunos e professores.
+* Um livro de receitas digital para  organizar seus pratos favoritos.
 
 ## 📲 Como executar o projeto
 ```bash
