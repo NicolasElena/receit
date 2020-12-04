@@ -1,4 +1,4 @@
-# RECEIT - 
+# RECEIT 
 
 <p align="center">	
    <img src="./.github/receit.PNG" alt="Proffy" width="620"/>
