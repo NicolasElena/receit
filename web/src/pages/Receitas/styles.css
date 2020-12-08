@@ -10,7 +10,7 @@
   padding: 0 6.4rem;
   margin-top: 10px;
   margin-bottom: -20px;
-  margin-left: 0.4vw;
+  margin-left: 0.93rem;
   justify-content: center;
   align-items: center;
 }
@@ -19,6 +19,7 @@
 }
 .page-content {
   background: var(--color-box-base);
+  min-height: 80vh;
   border-radius: 0.8rem;
   padding: 0 6.4rem;
   overflow-y: auto;
